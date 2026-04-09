@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dpjwx6267k6hy"]
+
+[ext_resource type="Script" uid="uid://cx8p33lpmvtjh" path="res://Player/States/walled.gd" id="1_teg3r"]
+
+[node name="Walled" type="Node" unique_id=1343920780]
+script = ExtResource("1_teg3r")
+animName = "wallSlide"
+metadata/_custom_type_script = "uid://ry5rn0gmh7as"

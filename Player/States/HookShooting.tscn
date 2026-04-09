@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bc6kmb7a8q0wu"]
+
+[ext_resource type="Script" uid="uid://i7egl4effoky" path="res://Player/States/hook_shooting.gd" id="1_78kuc"]
+
+[node name="HookShooting" type="Node" unique_id=1742487440]
+script = ExtResource("1_78kuc")
+animName = "hookShooting"
+metadata/_custom_type_script = "uid://ry5rn0gmh7as"

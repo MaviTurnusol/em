@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cppffvsrsv4uy"]
+
+[ext_resource type="Script" uid="uid://ighfggkbwrij" path="res://Player/States/idle.gd" id="1_6bimv"]
+
+[node name="Idle" type="Node" unique_id=851784107]
+script = ExtResource("1_6bimv")
+animName = "idle"
+animOnStart = false
+cantTransitionFrom = PackedStringArray("jump")
+metadata/_custom_type_script = "uid://ry5rn0gmh7as"

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bf54jbsxmwkmq"]
+
+[ext_resource type="Script" uid="uid://20u2kh6ehs7b" path="res://Environments/env_runner.gd" id="1_dulsv"]
+[ext_resource type="Texture2D" uid="uid://blweh0hi46c6d" path="res://Environments/Sprites/BGPlaceHolder.png" id="1_ymyny"]
+[ext_resource type="PackedScene" uid="uid://dbubgv81bqoxm" path="res://Environments/LAB1.tscn" id="2_b8rd7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dulsv"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b8rd7"]
+viewport_path = NodePath("SubViewport")
+
+[node name="EnvRunner" type="Node2D" unique_id=509331693]
+script = ExtResource("1_dulsv")
+
+[node name="SubViewport2" type="SubViewport" parent="." unique_id=1488237643]
+snap_2d_transforms_to_pixel = true
+size = Vector2i(320, 180)
+
+[node name="background" type="Node2D" parent="SubViewport2" unique_id=1782730360]
+z_index = -2
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewport2/background" unique_id=1221336570]
+repeat_size = Vector2(512, 432)
+repeat_times = 7
+screen_offset = Vector2(512, 432)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport2/background/Parallax2D" unique_id=1394807483]
+texture = ExtResource("1_ymyny")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport2" unique_id=1857420410]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=85123362]
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(320, 180)
+
+[node name="Lab1" parent="SubViewport" unique_id=1114061177 instance=ExtResource("2_b8rd7")]
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=514235885]
+z_index = -3
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_dulsv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1207393952]
+texture_filter = 1
+offset_right = 320.0
+offset_bottom = 180.0
+texture = SubResource("ViewportTexture_b8rd7")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=384721867]
+modulate = Color(0, 0, 0, 0.39215687)
+z_index = -1
+texture_filter = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 321.0
+offset_bottom = 181.0
+texture = SubResource("ViewportTexture_b8rd7")

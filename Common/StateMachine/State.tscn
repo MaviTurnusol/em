@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dpytryifxx1ix"]
+
+[ext_resource type="Script" uid="uid://ry5rn0gmh7as" path="res://Common/StateMachine/state.gd" id="1_ng7kp"]
+
+[node name="State" type="Node" unique_id=2005254250]
+script = ExtResource("1_ng7kp")

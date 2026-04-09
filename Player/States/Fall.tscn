@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cglgi81mf7poy"]
+
+[ext_resource type="Script" uid="uid://cx41g3pkbi4v5" path="res://Player/States/fall.gd" id="1_x1lpj"]
+
+[node name="Fall" type="Node" unique_id=717196701]
+script = ExtResource("1_x1lpj")
+animName = "fall"
+metadata/_custom_type_script = "uid://ry5rn0gmh7as"

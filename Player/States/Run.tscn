@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://1dhahwfuebep"]
+
+[ext_resource type="Script" uid="uid://cdyobwmm8h0l4" path="res://Player/States/run.gd" id="1_kp3mx"]
+
+[node name="Run" type="Node" unique_id=317808652]
+script = ExtResource("1_kp3mx")
+animName = "run"
+animOnStart = false
+cantTransitionFrom = PackedStringArray("jump", "fall", "roll", "walled")
+metadata/_custom_type_script = "uid://ry5rn0gmh7as"

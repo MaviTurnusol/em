@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://btwdpmkv2q21e"]
+
+[ext_resource type="Script" uid="uid://cwajdh7gqovsx" path="res://Player/States/jump.gd" id="1_36t66"]
+
+[node name="Jump" type="Node" unique_id=234371468]
+script = ExtResource("1_36t66")
+animName = "jump"
+cantTransitionFrom = PackedStringArray("roll", "jump", "fall")
+metadata/_custom_type_script = "uid://ry5rn0gmh7as"
