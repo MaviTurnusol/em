@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://blweh0hi46c6d" path="res://Environments/Sprites/BGPlaceHolder.png" id="1_63pc3"]
 [ext_resource type="Texture2D" uid="uid://dyyd15gr881fv" path="res://Environments/Sprites/tilesetPlaceHolder.png" id="2_83wgp"]
 [ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="2_avm35"]
+[ext_resource type="PackedScene" uid="uid://22enwy1the5w" path="res://Environments/l_block.tscn" id="4_avm35"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avm35"]
 texture = ExtResource("2_83wgp")
@@ -48,7 +49,16 @@ sources/0 = SubResource("TileSetAtlasSource_avm35")
 
 [node name="Lab1" type="Node2D" unique_id=1114061177]
 
+[node name="L_Block" parent="." unique_id=2122050911 instance=ExtResource("4_avm35")]
+z_index = -1
+offset_left = 623.0
+offset_top = 161.0
+offset_right = 2543.0
+offset_bottom = 1241.0
+scale = Vector2(0.25, 0.25)
+
 [node name="Player" parent="." unique_id=830846263 node_paths=PackedStringArray("cam") instance=ExtResource("2_avm35")]
+position = Vector2(731, 244)
 cam = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=385918236]

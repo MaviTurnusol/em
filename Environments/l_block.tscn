@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://22enwy1the5w"]
+
+[ext_resource type="PackedScene" uid="uid://pixw05obeypq" path="res://Environments/Sprites/l_blocgkg.gltf" id="1_07741"]
+[ext_resource type="PackedScene" uid="uid://ctcxm7pwhpd2k" path="res://Environments/camera_turner.tscn" id="2_fvycd"]
+
+[node name="L_Block" type="SubViewportContainer" unique_id=2122050911]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1699924794]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="blockbench_export" parent="SubViewport" unique_id=2145965642 instance=ExtResource("1_07741")]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, -0.17364818, 0, 0.17364818, 0.9848077, 0, 0, -3)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=78297677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 16)
+projection = 1
+fov = 37.849285
+size = 16.0
+
+[node name="cameraTurner" parent="." unique_id=1508869699 node_paths=PackedStringArray("cam") instance=ExtResource("2_fvycd")]
+cam = NodePath("../SubViewport/Camera3D")

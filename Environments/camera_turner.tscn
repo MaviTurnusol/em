@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ctcxm7pwhpd2k"]
+
+[ext_resource type="Script" uid="uid://vow24suiecio" path="res://Environments/camera_turner.gd" id="1_72bwy"]
+
+[node name="cameraTurner" type="Node" unique_id=1508869699]
+script = ExtResource("1_72bwy")
