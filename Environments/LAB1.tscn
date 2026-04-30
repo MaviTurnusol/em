@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dyyd15gr881fv" path="res://Environments/Sprites/tilesetPlaceHolder.png" id="2_83wgp"]
 [ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="2_avm35"]
 [ext_resource type="PackedScene" uid="uid://22enwy1the5w" path="res://Environments/l_block.tscn" id="4_avm35"]
+[ext_resource type="PackedScene" uid="uid://dlyhfn5cnuudk" path="res://Environments/coin.tscn" id="5_3aomy"]
+[ext_resource type="PackedScene" uid="uid://byif2u1t0xik7" path="res://Environments/hub.tscn" id="6_dgawy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avm35"]
 texture = ExtResource("2_83wgp")
@@ -57,7 +59,7 @@ offset_right = 2543.0
 offset_bottom = 1241.0
 scale = Vector2(0.25, 0.25)
 
-[node name="Player" parent="." unique_id=830846263 node_paths=PackedStringArray("cam") instance=ExtResource("2_avm35")]
+[node name="Player" parent="." unique_id=830846263 node_paths=PackedStringArray("cam") groups=["Player"] instance=ExtResource("2_avm35")]
 position = Vector2(731, 244)
 cam = NodePath("Camera2D")
 
@@ -84,3 +86,14 @@ screen_offset = Vector2(512, 432)
 
 [node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D" unique_id=1574773593]
 texture = ExtResource("1_63pc3")
+
+[node name="Coin" parent="." unique_id=874925183 instance=ExtResource("5_3aomy")]
+position = Vector2(-40, 248)
+
+[node name="Coin2" parent="." unique_id=1126454729 instance=ExtResource("5_3aomy")]
+position = Vector2(-16, 248)
+
+[node name="Coin3" parent="." unique_id=1453033459 instance=ExtResource("5_3aomy")]
+position = Vector2(8, 248)
+
+[node name="HUB" parent="." unique_id=1402214287 instance=ExtResource("6_dgawy")]
