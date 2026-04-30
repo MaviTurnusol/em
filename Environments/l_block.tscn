@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://22enwy1the5w"]
 
 [ext_resource type="PackedScene" uid="uid://pixw05obeypq" path="res://Environments/Sprites/l_blocgkg.gltf" id="1_07741"]
+[ext_resource type="PackedScene" uid="uid://bef5xi14gbr84" path="res://Environments/vertices.tscn" id="2_6jmyt"]
 [ext_resource type="PackedScene" uid="uid://ctcxm7pwhpd2k" path="res://Environments/camera_turner.tscn" id="2_fvycd"]
 
 [node name="L_Block" type="SubViewportContainer" unique_id=2122050911]
@@ -14,13 +15,18 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="blockbench_export" parent="SubViewport" unique_id=2145965642 instance=ExtResource("1_07741")]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, -0.17364818, 0, 0.17364818, 0.9848077, 0, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 0.98480767, -0.17364816, 0, 0.17364816, 0.98480767, 0, 0, -3)
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=78297677]
+[node name="vertices" parent="SubViewport/blockbench_export" unique_id=1239212259 instance=ExtResource("2_6jmyt")]
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, -1.463753, 2.9659271, -1.2985516)
+
+[node name="Marker3D" type="Marker3D" parent="SubViewport" unique_id=1476710847]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Marker3D" unique_id=78297677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 16)
 projection = 1
 fov = 37.849285
 size = 16.0
 
-[node name="cameraTurner" parent="." unique_id=1508869699 node_paths=PackedStringArray("cam") instance=ExtResource("2_fvycd")]
-cam = NodePath("../SubViewport/Camera3D")
+[node name="cameraTurner" parent="." unique_id=1508869699 node_paths=PackedStringArray("marker") instance=ExtResource("2_fvycd")]
+marker = NodePath("../SubViewport/Marker3D")

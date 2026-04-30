@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bef5xi14gbr84"]
+
+[ext_resource type="Script" uid="uid://c6plag3rkjgrd" path="res://Environments/vertices.gd" id="1_je2bd"]
+
+[node name="vertices" type="Node3D" unique_id=1239212259]
+script = ExtResource("1_je2bd")

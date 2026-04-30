@@ -1,20 +1,14 @@
 extends Node
 
-@export var cam : Camera3D
-var initialPos : Vector3
+@export var marker : Marker3D
 
-func _ready() -> void:
-	initialPos = cam.position
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("misc"):
 		_turn_right()
 
 func _turn_right():
-	var newRot = Vector3(cam.rotation.x, cam.rotation.y + PI/2, cam.rotation.z)
-	var newPos = Vector3(cam.position.z, cam.position.y, -cam.position.x)
+	var markerNewRot = Vector3(marker.rotation.x, marker.rotation.y + PI/2, marker.rotation.z)
 	
-	var twinkRot = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
-	var twinkPos = get_tree().create_tween()
-	twinkRot.tween_property(cam, "rotation", newRot, 0.5)
-	twinkPos.tween_property(cam, "position", newPos, 0.5)
+	var twinkRot = get_tree().create_tween()
+	twinkRot.tween_property(marker, "rotation", markerNewRot, 0.5)
 	pass
