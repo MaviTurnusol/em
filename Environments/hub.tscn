@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://byif2u1t0xik7"]
+
+[ext_resource type="Script" uid="uid://cslt57vd4qfet" path="res://score_coin_show.gd" id="1_kdhyl"]
+
+[node name="HUB" type="CanvasLayer" unique_id=1402214287]
+script = ExtResource("1_kdhyl")
+
+[node name="Dosh" type="Label" parent="." unique_id=212436796]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Coin:"

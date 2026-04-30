@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="em"
+run/main_scene="uid://dbubgv81bqoxm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -33,6 +34,10 @@ folder_colors={
 "res://Environments/": "teal",
 "res://Player/": "purple"
 }
+
+[global_group]
+
+Player=""
 
 [input]
 
