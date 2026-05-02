@@ -7,6 +7,8 @@ var jumpVelocity = -400.0
 var dir = 1.0
 var dashDuration = 0.33
 
+var dashes = 0
+
 @export var cam : Camera2D
 
 func _ready():
@@ -21,7 +23,9 @@ func _physics_process(delta):
 	
 	#Dashing
 	if Input.is_action_just_pressed("run"):
-		machine.change_state_to("dash")
+		if dashes > 0:
+			machine.change_state_to("dash")
+			dashes -= 1
 	
 	#Jumping
 	if Input.is_action_just_pressed("jump"):
@@ -77,8 +81,26 @@ func flip(foo) -> void:
 		"right":
 			$Marker2D.scale.x = 1
 
+func death():
+	UnlimitedRulebook.frameFreeze(0.1, 0.25)
+	#await $hitflashPlayer.animation_finished
+	await get_tree().create_timer(0.1 * 0.25).timeout
+	global_position = UnlimitedRulebook.checkpoint
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group('Player'):
-		$"../Coins/Coin".coins +=1
-		$"../Coins/Coin".score +=1
+func set_hurtbox_collision(val: bool) -> void:
+	if val == true:
+		$Marker2D/HurtBox/CollisionShape2D.set_deferred("disabled", false)
+	if val == false:
+		$Marker2D/HurtBox/CollisionShape2D.set_deferred("disabled", true)
+
+func set_collision_size(size):
+	match size:
+		"default":
+			$Marker2D/HurtBox/CollisionShape2D.shape.radius = 6
+			$Marker2D/HurtBox/CollisionShape2D.shape.height = 20
+			$Marker2D/HurtBox/CollisionShape2D.position = Vector2(0, -10)
+		"dash":
+			$Marker2D/HurtBox/CollisionShape2D.shape.radius = 5
+			$Marker2D/HurtBox/CollisionShape2D.shape.height = 10
+			$Marker2D/HurtBox/CollisionShape2D.position = Vector2(0, -16)
+		

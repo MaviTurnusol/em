@@ -32,12 +32,14 @@ window/canvas_textures/default_texture_filter=0
 folder_colors={
 "res://Common/": "blue",
 "res://Environments/": "teal",
+"res://Objects/": "orange",
 "res://Player/": "purple"
 }
 
 [global_group]
 
 Player=""
+hurty=""
 
 [input]
 

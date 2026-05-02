@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://1g26q7f0g4wy"]
+
+[ext_resource type="Script" uid="uid://btudkv8x1hhdr" path="res://tile_map_drop_shadow.gd" id="1_4knmw"]
+
+[node name="tileMapDropShadow" type="Node2D" unique_id=2019205554]
+script = ExtResource("1_4knmw")

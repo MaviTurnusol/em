@@ -22,3 +22,9 @@ func damage(attack, attacker):
 	if not is_inside_tree():return
 	await get_tree().process_frame
 	set_deferred("monitorable", true)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("hurty"):
+		damage(1, self)
+	pass # Replace with function body.

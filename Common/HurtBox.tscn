@@ -4,3 +4,5 @@
 
 [node name="HurtBox" type="Area2D" unique_id=464789721]
 script = ExtResource("1_ecg5e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

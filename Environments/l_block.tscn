@@ -15,7 +15,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="blockbench_export" parent="SubViewport" unique_id=2145965642 instance=ExtResource("1_07741")]
-transform = Transform3D(1, 0, 0, 0, 0.98480767, -0.17364816, 0, 0.17364816, 0.98480767, 0, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, -3)
 
 [node name="vertices" parent="SubViewport/blockbench_export" unique_id=1239212259 instance=ExtResource("2_6jmyt")]
 transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, -1.463753, 2.9659271, -1.2985516)

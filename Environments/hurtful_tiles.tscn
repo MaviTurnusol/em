@@ -1,0 +1,70 @@
+[gd_scene format=4 uid="uid://b25eorp6e5sgm"]
+
+[ext_resource type="Texture2D" uid="uid://cvo1hpwde1pcu" path="res://Objects/errorTileset.png" id="1_akd3m"]
+[ext_resource type="Shader" uid="uid://7mnu43xxo7on" path="res://glitch.gdshader" id="2_6hnsw"]
+[ext_resource type="Script" uid="uid://py0yakm147pm" path="res://Environments/hurtful_tiles.gd" id="2_nf2mj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hnsw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hnsw"]
+texture = ExtResource("1_akd3m")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_nf2mj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
+sources/0 = SubResource("TileSetAtlasSource_6hnsw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nf2mj"]
+shader = ExtResource("2_6hnsw")
+shader_parameter/shake_power = 0.01
+shader_parameter/shake_rate = 0.50000002375
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[node name="HurtfulTiles" type="TileMapLayer" unique_id=997630280 groups=["hurty"]]
+z_index = -1
+material = SubResource("ShaderMaterial_6hnsw")
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAIAAAABAAAAAAABAAAAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAAAAAAACAAAAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAADAAAAAAADAAAAAAADAAEAAAADAAEAAAADAAIAAAADAAIAAAAEAAAAAAAEAAAAAAAEAAEAAAAEAAEAAAAEAAIAAAAEAAIAAAA=")
+tile_set = SubResource("TileSet_nf2mj")
+script = ExtResource("2_nf2mj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=958481305]
+material = SubResource("ShaderMaterial_nf2mj")
+offset_right = 81.0
+offset_bottom = 48.0
+
+[node name="Hue" type="ColorRect" parent="." unique_id=390316869]
+offset_right = 81.0
+offset_bottom = 49.0
+color = Color(0.5, 0, 0, 0.22352941)

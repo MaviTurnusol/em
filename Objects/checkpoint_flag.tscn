@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://b7yxou8hk2sql"]
+
+[ext_resource type="Script" uid="uid://ctxqkysd7m5l0" path="res://Objects/checkpoint_flag.gd" id="1_150pg"]
+[ext_resource type="Texture2D" uid="uid://fsyshquvthxg" path="res://Objects/flagGreent.png" id="1_bfyft"]
+[ext_resource type="Texture2D" uid="uid://bd8bsxwbtdy32" path="res://Objects/flagWhitet.png" id="2_150pg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_150pg"]
+atlas = ExtResource("2_150pg")
+region = Rect2(0, 0, 21, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p7ns"]
+atlas = ExtResource("2_150pg")
+region = Rect2(21, 0, 21, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i8ww6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_150pg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p7ns")
+}],
+"loop": false,
+"name": &"shade",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy78e"]
+atlas = ExtResource("1_bfyft")
+region = Rect2(0, 0, 21, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rso2"]
+atlas = ExtResource("1_bfyft")
+region = Rect2(21, 0, 21, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw34e"]
+atlas = ExtResource("2_150pg")
+region = Rect2(0, 0, 21, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l3ew"]
+atlas = ExtResource("2_150pg")
+region = Rect2(21, 0, 21, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p7ns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy78e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rso2")
+}],
+"loop": true,
+"name": &"green",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw34e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l3ew")
+}],
+"loop": true,
+"name": &"white",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_i8ww6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7lmu6"]
+resource_name = "wobble"
+length = 0.33
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.3490658503988659, 0.3490658503988659, -0.3490658503988659, 0.17453292519943295, -0.17453292519943295, 0.17453292519943295, -0.17453292519943295, 0.08726646259971647, -0.08726646259971647, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pxtd"]
+_data = {
+&"RESET": SubResource("Animation_i8ww6"),
+&"wobble": SubResource("Animation_7lmu6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfyft"]
+size = Vector2(22, 30)
+
+[node name="CheckpointFlag" type="Node2D" unique_id=326458859]
+script = ExtResource("1_150pg")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=654416144]
+
+[node name="shadow" type="AnimatedSprite2D" parent="Marker2D" unique_id=251319840]
+modulate = Color(0, 0, 0, 0.74509805)
+position = Vector2(12, -10)
+sprite_frames = SubResource("SpriteFrames_i8ww6")
+animation = &"shade"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D" unique_id=549795453]
+position = Vector2(8, -14)
+sprite_frames = SubResource("SpriteFrames_7p7ns")
+animation = &"white"
+autoplay = "white"
+frame_progress = 0.02843831
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1276449997]
+libraries/ = SubResource("AnimationLibrary_4pxtd")
+speed_scale = 0.5
+
+[node name="Area2D" type="Area2D" parent="." unique_id=899778930]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=814038540]
+position = Vector2(9, -14)
+shape = SubResource("RectangleShape2D_bfyft")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
