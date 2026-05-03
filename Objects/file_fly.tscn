@@ -81,7 +81,7 @@ _data = {
 &"float": SubResource("Animation_hxv8f")
 }
 
-[node name="Path2D" type="Path2D" unique_id=2126143714]
+[node name="FileFly" type="Path2D" unique_id=2126143714]
 z_index = -1
 curve = SubResource("Curve2D_gtnb1")
 
@@ -90,7 +90,6 @@ rotates = false
 script = ExtResource("1_gtnb1")
 
 [node name="StaticBody2D" type="AnimatableBody2D" parent="FileFly" unique_id=444331557]
-position = Vector2(0, -0.95440286)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FileFly/StaticBody2D" unique_id=1115793749]
 position = Vector2(0, -31)

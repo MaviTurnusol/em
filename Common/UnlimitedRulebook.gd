@@ -2,6 +2,7 @@ extends Node
 
 var player
 var cam
+var current_stage
 
 #This is a coin gain/up mechanic
 var coin = 0
