@@ -1,12 +1,26 @@
 [gd_scene format=3 uid="uid://bk8v2yrtklwjw"]
 
-[ext_resource type="PackedScene" uid="uid://igyuvglu12mh" path="res://Environments/Stage_1.tscn" id="1_vndng"]
+[ext_resource type="Texture2D" uid="uid://cgjf8lmk7hklm" path="res://Environments/Sprites/BGNeon.png" id="1_we0ip"]
 [ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="2_lk3id"]
 [ext_resource type="Script" uid="uid://cu3m5ncysntqk" path="res://Common/cam_script.gd" id="3_38vnk"]
+[ext_resource type="PackedScene" uid="uid://bolyq8q0gb3w1" path="res://Environments/Stages/Robotcity0.tscn" id="4_we0ip"]
+[ext_resource type="PackedScene" uid="uid://b7yxou8hk2sql" path="res://Objects/checkpoint_flag.tscn" id="5_2j0hd"]
 
 [node name="StageFatherThePrimordialOne" type="Node2D" unique_id=329805680]
 
+[node name="background" type="Node2D" parent="." unique_id=759864905]
+
+[node name="Parallax2D" type="Parallax2D" parent="background" unique_id=1285965647]
+z_index = -4
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(512, 416)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D" unique_id=1427747869]
+texture = ExtResource("1_we0ip")
+
 [node name="Player" parent="." unique_id=830846263 instance=ExtResource("2_lk3id")]
+z_index = 6
 position = Vector2(289, 248)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1099792613]
@@ -15,4 +29,8 @@ process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("3_38vnk")
 
-[node name="Stage1" parent="." unique_id=52691167 instance=ExtResource("1_vndng")]
+[node name="Robotcity0" parent="." unique_id=647117926 instance=ExtResource("4_we0ip")]
+
+[node name="CheckpointFlag" parent="." unique_id=326458859 instance=ExtResource("5_2j0hd")]
+visible = false
+position = Vector2(283, 279)

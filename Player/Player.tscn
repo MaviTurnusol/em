@@ -426,6 +426,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=830846263 groups=["Player"]]
+z_index = 1
 material = SubResource("ShaderMaterial_yifbt")
 script = ExtResource("1_j23h2")
 
