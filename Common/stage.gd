@@ -43,8 +43,8 @@ func _on_body_entered(body: Node2D) -> void:
 func load_adjacent_stages():
 	for stage in adjacent_stages:
 		if get_tree().root.get_child(0).has_node("/root/StageFatherThePrimordialOne/"+stage):
-			print("cockandballsz")
-			break
+			print(stage)
+			continue
 		var newStage = load("res://Environments/Stages/" + stage + ".tscn").instantiate()
 		match stage:
 			top_stage:
@@ -73,10 +73,10 @@ func tween_camera_borders():
 	var righttween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	var toptween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	var bottomtween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
-	lefttween.tween_property(UnlimitedRulebook.cam, "limit_left", global_position.x, 0.5)
-	righttween.tween_property(UnlimitedRulebook.cam, "limit_right", global_position.x + collision_shape.shape.size.x, 0.5)
-	toptween.tween_property(UnlimitedRulebook.cam, "limit_top", global_position.y, 0.5)
-	bottomtween.tween_property(UnlimitedRulebook.cam, "limit_bottom", global_position.y + collision_shape.shape.size.y, 0.5)
+	lefttween.tween_property(UnlimitedRulebook.cam, "limit_left", global_position.x, 0.33)
+	righttween.tween_property(UnlimitedRulebook.cam, "limit_right", global_position.x + collision_shape.shape.size.x, 0.33)
+	toptween.tween_property(UnlimitedRulebook.cam, "limit_top", global_position.y, 0.33)
+	bottomtween.tween_property(UnlimitedRulebook.cam, "limit_bottom", global_position.y + collision_shape.shape.size.y, 0.33)
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):

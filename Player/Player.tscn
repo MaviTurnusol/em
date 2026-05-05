@@ -388,6 +388,9 @@ height = 20.0
 radius = 6.0
 height = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nb2p"]
+size = Vector2(6, 18.5)
+
 [sub_resource type="Animation" id="Animation_d7xyo"]
 length = 0.001
 tracks/0/type = "value"
@@ -467,6 +470,12 @@ target_position = Vector2(7, 0)
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_7v5gs")
 
+[node name="jumpBuffer" type="Area2D" parent="." unique_id=408451667]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jumpBuffer" unique_id=1929779893]
+position = Vector2(0, 8.75)
+shape = SubResource("RectangleShape2D_3nb2p")
+
 [node name="StateMachine" parent="." unique_id=523353381 node_paths=PackedStringArray("initialState") instance=ExtResource("10_0j2ni")]
 initialState = NodePath("Idle")
 
@@ -495,3 +504,6 @@ autowrap_mode = 3
 
 [node name="hitflashPlayer" type="AnimationPlayer" parent="." unique_id=881168194]
 libraries/ = SubResource("AnimationLibrary_d7xyo")
+
+[connection signal="body_entered" from="jumpBuffer" to="." method="_on_jump_buffer_body_entered"]
+[connection signal="body_exited" from="jumpBuffer" to="." method="_on_jump_buffer_body_exited"]

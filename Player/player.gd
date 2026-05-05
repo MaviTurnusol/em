@@ -9,6 +9,9 @@ var dashDuration = 0.33
 
 var dashes = 0
 
+var inJumpBufferArea = false
+var bufferedJump = false
+
 @export var cam : Camera2D
 
 func _ready():
@@ -36,10 +39,19 @@ func _physics_process(delta):
 			if get_wall_normal().x == -1.0:
 				flip("left")
 		machine.change_state_to("jump")
+	if inJumpBufferArea:
+		if Input.is_action_just_pressed("jump"):
+			if velocity.y > 0:
+				bufferedJump = true
+	if bufferedJump:
+		if is_on_floor():
+			machine.change_state_to("jump")
+			bufferedJump = false
 	
 	#Falling
 	if !is_on_floor() && machine.get_state() not in ["walled", "dash"]:
-		velocity.y += get_gravity().y * delta
+		#velocity.y += get_gravity().y * delta
+		velocity.y = clamp(velocity.y + get_gravity().y * delta, jumpVelocity*2, -jumpVelocity*2)
 		if machine.get_state() not in ["roll", "jump"]:
 			machine.change_state_to("fall")
 	
@@ -104,3 +116,13 @@ func set_collision_size(size):
 			$Marker2D/HurtBox/CollisionShape2D.shape.height = 10
 			$Marker2D/HurtBox/CollisionShape2D.position = Vector2(0, -16)
 		
+
+
+func _on_jump_buffer_body_entered(_body: Node2D) -> void:
+	inJumpBufferArea = true
+	pass # Replace with function body.
+
+
+func _on_jump_buffer_body_exited(_body: Node2D) -> void:
+	inJumpBufferArea = false
+	pass # Replace with function body.
