@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b25eorp6e5sgm" path="res://Environments/hurtful_tiles.tscn" id="3_6g0m4"]
 [ext_resource type="PackedScene" uid="uid://b7yxou8hk2sql" path="res://Objects/checkpoint_flag.tscn" id="4_ty30k"]
 [ext_resource type="PackedScene" uid="uid://drtord466t5cf" path="res://Objects/file_fly.tscn" id="5_nedls"]
+[ext_resource type="PackedScene" uid="uid://bo8nqt58uirec" path="res://Objects/letterfly.tscn" id="6_lp43s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ty30k"]
 size = Vector2(2934, 1164)
@@ -36,3 +37,21 @@ metadata/_edit_group_ = true
 
 [node name="FileFly" parent="." unique_id=2126143714 instance=ExtResource("5_nedls")]
 position = Vector2(535, 451)
+
+[node name="Letterfly" parent="." unique_id=310661831 instance=ExtResource("6_lp43s")]
+position = Vector2(551, 816)
+
+[node name="Letterfly2" parent="." unique_id=1471439134 instance=ExtResource("6_lp43s")]
+position = Vector2(242, 790)
+
+[node name="Letterfly3" parent="." unique_id=1493152366 instance=ExtResource("6_lp43s")]
+position = Vector2(184, 756)
+
+[node name="Letterfly4" parent="." unique_id=300158245 instance=ExtResource("6_lp43s")]
+position = Vector2(282, 635)
+
+[node name="Letterfly5" parent="." unique_id=2109535404 instance=ExtResource("6_lp43s")]
+position = Vector2(314, 579)
+
+[node name="Letterfly6" parent="." unique_id=878724856 instance=ExtResource("6_lp43s")]
+position = Vector2(259, 491)
