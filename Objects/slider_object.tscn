@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bbwccc64eh1ip"]
+
+[ext_resource type="Script" uid="uid://dsa85dca3vte4" path="res://Objects/slider_object.gd" id="1_5cf83"]
+[ext_resource type="Texture2D" uid="uid://dyocvi8pjenv" path="res://Objects/slider.png" id="1_o8cij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cf83"]
+size = Vector2(8, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0iey"]
+size = Vector2(10, 37)
+
+[node name="SliderObject" type="CharacterBody2D" unique_id=765875186]
+script = ExtResource("1_5cf83")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2121136825]
+position = Vector2(0, 8)
+texture = ExtResource("1_o8cij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=107502305]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_5cf83")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1334841263]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=600666204]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_r0iey")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

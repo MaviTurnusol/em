@@ -22,7 +22,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var twink = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 		var twink2 = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 		twink.tween_property($StaticBody2D, "position", Vector2(0, 0), 0.2)
-		twink2.tween_property($StaticBody2D/button, "position", Vector2(0, 2), 0.2)
+		twink2.tween_property($StaticBody2D/button, "position", Vector2(0, 2), 0.1)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):

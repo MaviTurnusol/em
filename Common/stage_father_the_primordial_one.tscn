@@ -21,7 +21,7 @@ texture = ExtResource("1_we0ip")
 
 [node name="Player" parent="." unique_id=830846263 instance=ExtResource("2_lk3id")]
 z_index = 6
-position = Vector2(362, 815)
+position = Vector2(1254, 382)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1099792613]
 position = Vector2(0, -42)
