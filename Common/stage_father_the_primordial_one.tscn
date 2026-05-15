@@ -9,6 +9,7 @@
 [node name="StageFatherThePrimordialOne" type="Node2D" unique_id=329805680]
 
 [node name="background" type="Node2D" parent="." unique_id=759864905]
+visible = false
 
 [node name="Parallax2D" type="Parallax2D" parent="background" unique_id=1285965647]
 z_index = -4
@@ -21,7 +22,7 @@ texture = ExtResource("1_we0ip")
 
 [node name="Player" parent="." unique_id=830846263 instance=ExtResource("2_lk3id")]
 z_index = 6
-position = Vector2(1254, 382)
+position = Vector2(380, 745)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1099792613]
 position = Vector2(0, -42)

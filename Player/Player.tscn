@@ -210,6 +210,11 @@ animations = [{
 "name": &"blank",
 "speed": 12.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"dashhorizontal",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ustk3")
@@ -390,6 +395,9 @@ size = Vector2(12, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3nb2p"]
 size = Vector2(6, 18.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evw08"]
+size = Vector2(16, 18)
+
 [sub_resource type="Animation" id="Animation_d7xyo"]
 length = 0.001
 tracks/0/type = "value"
@@ -444,7 +452,7 @@ use_parent_material = true
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_8agqw")
-animation = &"death"
+animation = &"wallSlide"
 autoplay = "idle"
 
 [node name="HurtBox" parent="Marker2D" unique_id=464789721 node_paths=PackedStringArray("father", "healthComp") instance=ExtResource("8_3mea3")]
@@ -475,6 +483,12 @@ shape = SubResource("RectangleShape2D_d7xyo")
 position = Vector2(0, 8.75)
 shape = SubResource("RectangleShape2D_3nb2p")
 
+[node name="wallJumpBuffer" type="Area2D" parent="." unique_id=1856923480]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallJumpBuffer" unique_id=851300484]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_evw08")
+
 [node name="StateMachine" parent="." unique_id=523353381 node_paths=PackedStringArray("initialState") instance=ExtResource("10_0j2ni")]
 initialState = NodePath("Idle")
 
@@ -493,7 +507,6 @@ initialState = NodePath("Idle")
 [node name="Dash" parent="StateMachine" unique_id=1750706330 instance=ExtResource("18_3nb2p")]
 
 [node name="DebugLabel" type="Label" parent="." unique_id=996781530]
-visible = false
 offset_left = -65.0
 offset_top = -49.0
 offset_right = 65.0
@@ -504,5 +517,17 @@ autowrap_mode = 3
 [node name="hitflashPlayer" type="AnimationPlayer" parent="." unique_id=881168194]
 libraries/ = SubResource("AnimationLibrary_d7xyo")
 
+[node name="ghostTimer" type="Timer" parent="." unique_id=656845366]
+wait_time = 0.05
+one_shot = true
+
+[node name="wallJumpBufferFader" type="Timer" parent="." unique_id=1047770382]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="body_entered" from="jumpBuffer" to="." method="_on_jump_buffer_body_entered"]
 [connection signal="body_exited" from="jumpBuffer" to="." method="_on_jump_buffer_body_exited"]
+[connection signal="body_entered" from="wallJumpBuffer" to="." method="_on_wall_jump_buffer_body_entered"]
+[connection signal="body_exited" from="wallJumpBuffer" to="." method="_on_wall_jump_buffer_body_exited"]
+[connection signal="timeout" from="ghostTimer" to="." method="_on_ghost_timer_timeout"]
+[connection signal="timeout" from="wallJumpBufferFader" to="." method="_on_wall_jump_buffer_fader_timeout"]

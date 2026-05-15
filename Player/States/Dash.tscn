@@ -4,9 +4,9 @@
 
 [node name="Dash" type="Node" unique_id=1750706330]
 script = ExtResource("1_uwa05")
-animName = "blank"
+animName = "jump"
 cantTransitionFrom = PackedStringArray("dash", "roll")
-cantTransitionTo = PackedStringArray("roll", "walled", "walk", "run", "jump", "fall")
+cantTransitionTo = PackedStringArray("roll", "walk", "run", "jump", "fall")
 metadata/_custom_type_script = "uid://ry5rn0gmh7as"
 
 [node name="Timer" type="Timer" parent="." unique_id=1242811564]

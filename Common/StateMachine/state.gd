@@ -17,7 +17,7 @@ func SuperStart():
 		if stateOwner:
 			if is_instance_valid(stateOwner.anima):
 				stateOwner.anima.play(animName)
-				#print("i played animation: " + stateOwner.anima.animation)
+				print("i played animation: " + stateOwner.anima.animation)
 				if !endWithAnim:
 					return
 	if endWithAnim:

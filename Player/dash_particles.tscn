@@ -490,6 +490,7 @@ z_index = 2
 script = ExtResource("1_2hbxf")
 
 [node name="floating" type="GPUParticles2D" parent="." unique_id=63446963]
+visible = false
 material = SubResource("ShaderMaterial_2uqhc")
 position = Vector2(0, -18)
 emitting = false
@@ -504,6 +505,7 @@ trail_lifetime = 0.17
 process_material = SubResource("ShaderMaterial_xf5vg")
 
 [node name="floating2" type="GPUParticles2D" parent="." unique_id=271401989]
+visible = false
 material = SubResource("ShaderMaterial_2uqhc")
 position = Vector2(0, -18)
 emitting = false

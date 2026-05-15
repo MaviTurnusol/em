@@ -5,4 +5,6 @@
 [node name="Fall" type="Node" unique_id=717196701]
 script = ExtResource("1_x1lpj")
 animName = "fall"
+cantTransitionFrom = PackedStringArray("fall")
+cantTransitionTo = PackedStringArray("fall")
 metadata/_custom_type_script = "uid://ry5rn0gmh7as"

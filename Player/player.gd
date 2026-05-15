@@ -5,12 +5,16 @@ var jumpVelocity = -400.0
 @onready var anima = $Marker2D/anima
 @onready var machine = $StateMachine
 var dir = 1.0
-var dashDuration = 0.33
+var dashDuration = 0.2
 
+var acceleration = 0.1
 var dashes = 0
 
 var inJumpBufferArea = false
 var bufferedJump = false
+
+var inWallJumpBufferArea = false
+var bufferedWallJump = false
 
 @export var cam : Camera2D
 
@@ -47,6 +51,25 @@ func _physics_process(delta):
 		if is_on_floor():
 			machine.change_state_to("jump")
 			bufferedJump = false
+		
+	if inWallJumpBufferArea:
+		if Input.is_action_just_pressed("jump"):
+			if !is_on_floor():
+				bufferedWallJump = true
+				$wallJumpBufferFader.start()
+	if bufferedWallJump:
+		if machine.get_state() == "walled":
+			velocity.x = get_wall_normal().x * speed*3.2
+			if get_wall_normal().x == 1.0:
+				flip("right")
+			if get_wall_normal().x == -1.0:
+				flip("left")
+			machine.change_state_to("jump")
+			bufferedWallJump = false
+	
+	#After-Images
+	if velocity.length() >= 580.0 && $ghostTimer.is_stopped() && machine.get_state() != "idle":
+		$ghostTimer.start()
 	
 	#Falling
 	if !is_on_floor() && machine.get_state() not in ["walled", "dash"]:
@@ -69,10 +92,10 @@ func _physics_process(delta):
 		if dir_:
 			dir = dir_
 			if Input.is_action_pressed("run"):
-				velocity.x = lerp(velocity.x, dir*speed*1.6, 0.1)
+				velocity.x = lerp(velocity.x, dir*speed*1.6, acceleration)
 				if is_on_floor(): machine.change_state_to("run")
 			else:
-				velocity.x = lerp(velocity.x, dir*speed, 0.1)
+				velocity.x = lerp(velocity.x, dir*speed, acceleration)
 				if is_on_floor(): machine.change_state_to("walk")
 		else:
 			velocity.x = lerp(velocity.x, 0.0, 0.1)
@@ -126,3 +149,32 @@ func _on_jump_buffer_body_entered(_body: Node2D) -> void:
 func _on_jump_buffer_body_exited(_body: Node2D) -> void:
 	inJumpBufferArea = false
 	pass # Replace with function body.
+
+func spawn_ghost():
+	var ghost = AnimatedSprite2D.new()
+	ghost.sprite_frames = anima.sprite_frames
+	var faded_twink = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
+	faded_twink.tween_property(ghost, "modulate", Color.TRANSPARENT, 0.33)
+	ghost.global_position = anima.global_position
+	ghost.scale.x = $Marker2D.scale.x
+	get_tree().root.add_child(ghost)
+	ghost.play(anima.animation)
+	ghost.frame = anima.frame
+	ghost.pause()
+	await get_tree().create_timer(0.33).timeout
+	ghost.queue_free()
+
+
+func _on_ghost_timer_timeout() -> void:
+	spawn_ghost()
+	pass
+
+func _on_wall_jump_buffer_body_entered(_body: Node2D) -> void:
+	inWallJumpBufferArea = true
+
+func _on_wall_jump_buffer_body_exited(_body: Node2D) -> void:
+	inWallJumpBufferArea = false
+
+
+func _on_wall_jump_buffer_fader_timeout() -> void:
+	bufferedWallJump = false
