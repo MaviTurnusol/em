@@ -152,6 +152,7 @@ _data = {
 }
 
 [node name="Letterfly" type="Node2D" unique_id=310661831]
+position = Vector2(56, 48)
 script = ExtResource("1_hiwed")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=861320487]
@@ -161,8 +162,7 @@ shape = SubResource("RectangleShape2D_hiwed")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=727891402]
 sprite_frames = SubResource("SpriteFrames_8882v")
-animation = &"happy"
-frame_progress = 0.39155975
+animation = &"turkhappy"
 
 [node name="Node2D" type="Node2D" parent="StaticBody2D" unique_id=730816419]
 position = Vector2(0.25, 0)
@@ -174,7 +174,7 @@ offset_right = 5.0
 offset_bottom = 1.0
 theme_override_fonts/font = ExtResource("2_o77s5")
 theme_override_font_sizes/font_size = 16
-text = "A"
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="StaticBody2D" unique_id=1368180469]
 

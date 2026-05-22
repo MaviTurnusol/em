@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjqhfi5dlxskv"]
+
+[ext_resource type="PackedScene" uid="uid://drtord466t5cf" path="res://Objects/file_fly.tscn" id="1_t2yd7"]
+
+[node name="testinquarters" type="Node2D" unique_id=1424181033]
+
+[node name="FileFly" parent="." unique_id=2126143714 instance=ExtResource("1_t2yd7")]
+position = Vector2(97, 243)
