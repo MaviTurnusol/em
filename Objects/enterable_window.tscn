@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dn3nmsvc0fa5q"]
+
+[ext_resource type="Script" uid="uid://be33bm41hoprr" path="res://Objects/enterable_window.gd" id="1_d3bkd"]
+[ext_resource type="Texture2D" uid="uid://mbiacgfry5j7" path="res://Objects/winxpwindow2.png" id="1_tk17k"]
+[ext_resource type="PackedScene" uid="uid://7l72s5ege361" path="res://Environments/Stages/Winside0.tscn" id="2_clgks"]
+[ext_resource type="PackedScene" uid="uid://drtord466t5cf" path="res://Objects/file_fly.tscn" id="3_d3bkd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3bkd"]
+size = Vector2(390, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xscl6"]
+size = Vector2(380, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnxu2"]
+size = Vector2(5, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kohmd"]
+size = Vector2(20, 202)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clgks"]
+size = Vector2(354, 181)
+
+[node name="EnterableWindow" type="Control" unique_id=580359075]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 386.0
+offset_bottom = 242.0
+script = ExtResource("1_d3bkd")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=702362094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 386.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tk17k")
+patch_margin_left = 39
+patch_margin_top = 54
+patch_margin_right = 120
+patch_margin_bottom = 30
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=168723317]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_top = 0.045
+anchor_right = 0.99200004
+anchor_bottom = 0.957
+offset_left = 0.684
+offset_top = 16.11
+offset_right = 0.08798218
+offset_bottom = -4.5940094
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1770883061]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+canvas_item_default_texture_repeat = 1
+size = Vector2i(380, 200)
+render_target_update_mode = 4
+
+[node name="FileFly" parent="SubViewportContainer/SubViewport" unique_id=2126143714 instance=ExtResource("3_d3bkd")]
+position = Vector2(55, 88)
+
+[node name="Winside0" parent="SubViewportContainer/SubViewport" unique_id=180371166 instance=ExtResource("2_clgks")]
+
+[node name="innerArea" type="Area2D" parent="SubViewportContainer/SubViewport" unique_id=826383921]
+
+[node name="top" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/innerArea" unique_id=2038734208]
+position = Vector2(185, -5)
+shape = SubResource("RectangleShape2D_d3bkd")
+
+[node name="bottom" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/innerArea" unique_id=902854004]
+position = Vector2(190, 202)
+shape = SubResource("RectangleShape2D_xscl6")
+
+[node name="right" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/innerArea" unique_id=969555918]
+position = Vector2(382.5, 100)
+shape = SubResource("RectangleShape2D_gnxu2")
+
+[node name="left" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/innerArea" unique_id=840887313]
+position = Vector2(-9, 100)
+shape = SubResource("RectangleShape2D_kohmd")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1734634088]
+position = Vector2(-3, -27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1816105204]
+position = Vector2(198, 153.5)
+shape = SubResource("RectangleShape2D_clgks")
+
+[node name="cd" type="Timer" parent="." unique_id=57023801]
+wait_time = 0.05
+
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/innerArea" to="." method="_on_inner_area_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/innerArea" to="." method="_on_inner_area_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="cd" to="." method="_on_cd_timeout"]

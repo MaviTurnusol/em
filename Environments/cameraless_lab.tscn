@@ -1,0 +1,26 @@
+[gd_scene format=4 uid="uid://by8c8udvj0brk"]
+
+[ext_resource type="PackedScene" uid="uid://dn3nmsvc0fa5q" path="res://Objects/enterable_window.tscn" id="1_kffm0"]
+[ext_resource type="TileSet" uid="uid://ddk6i3m7autv4" path="res://Environments/Sprites/neonTiles.tres" id="2_4irtd"]
+[ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="3_feffb"]
+
+[node name="CameralessLab" type="Node2D" unique_id=546609149]
+
+[node name="EnterableWindow" parent="." unique_id=580359075 instance=ExtResource("1_kffm0")]
+offset_left = 222.0
+offset_top = 38.0
+offset_right = 608.0
+offset_bottom = 280.0
+
+[node name="EnterableWindow2" parent="." unique_id=1587222744 instance=ExtResource("1_kffm0")]
+offset_left = 7.0
+offset_top = 195.0
+offset_right = 393.0
+offset_bottom = 437.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1073189706]
+tile_map_data = PackedByteArray("AAAHAAgAAAAAAAMAAAAHAAkAAAAAAAQAAAAHAAoAAAAAAAUAAAAIAAgAAAABAAMAAAAIAAkAAAABAAQAAAAIAAoAAAABAAUAAAAJAAgAAAACAAMAAAAJAAkAAAACAAQAAAAJAAoAAAACAAUAAAAKAAgAAAADAAMAAAAKAAkAAAADAAQAAAAKAAoAAAADAAUAAAA=")
+tile_set = ExtResource("2_4irtd")
+
+[node name="Player" parent="." unique_id=830846263 instance=ExtResource("3_feffb")]
+position = Vector2(147, 112)
