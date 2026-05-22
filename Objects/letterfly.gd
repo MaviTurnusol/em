@@ -1,8 +1,11 @@
 extends Node2D
 
-
+@export var letter: String = "A"
+@onready var label : Label = $StaticBody2D/Node2D/Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	label.text = letter
+	
 	var anim = $StaticBody2D/AnimatedSprite2D.sprite_frames.get_animation_names().get(randi_range(0, $StaticBody2D/AnimatedSprite2D.sprite_frames.get_animation_names().size()-1))
 	$StaticBody2D/AnimatedSprite2D.play(anim)
 	pass # Replace with function body.
