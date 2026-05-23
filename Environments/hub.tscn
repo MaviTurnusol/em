@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://byif2u1t0xik7"]
 
 [ext_resource type="Script" uid="uid://cslt57vd4qfet" path="res://score_coin_show.gd" id="1_kdhyl"]
+[ext_resource type="FontFile" uid="uid://ca3f6aa62asq7" path="res://Common/VCR_OSD_MONO_1.001.ttf" id="2_sps6p"]
 
 [node name="HUB" type="CanvasLayer" unique_id=1402214287]
 script = ExtResource("1_kdhyl")
@@ -8,4 +9,5 @@ script = ExtResource("1_kdhyl")
 [node name="Dosh" type="Label" parent="." unique_id=212436796]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_sps6p")
 text = "Coin:"

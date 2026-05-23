@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_file("res://Common/stage_mother_of_the_priomoardial_one.tscn") var next_level_path : String
+@export_file("res://Environments/tutorial_level_2.tscn") var next_level_path : String
 
 var total_coins: int = 0
 

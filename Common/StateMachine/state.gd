@@ -27,8 +27,8 @@ func SuperStart():
 					stateOwner.anima.animation_finished.connect(AnimSuperEnd)
 					#print("endanim connected: " + stateOwner.anima.animation)
 				return
-	await get_tree().process_frame
-	SuperStart()
+	#await get_tree().process_frame
+	#SuperStart()
 	return
 
 func Start():
