@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dpp4ixlfh0cj4" path="res://Objects/dynasty-Sheet.png" id="9_3s7en"]
 [ext_resource type="PackedScene" uid="uid://btqts325owl28" path="res://Common/actionable.tscn" id="10_ejuni"]
 [ext_resource type="Resource" uid="uid://bfk2csw5j1pd7" path="res://Dialogue/test_dial.dialogue" id="11_pty8v"]
-[ext_resource type="Shader" uid="uid://whim4thq5iji" path="res://Common/hitflashscript.gdshader" id="12_iamtq"]
-[ext_resource type="PackedScene" uid="uid://77v8vkllyamw" path="res://Objects/key_baby.tscn" id="12_p10yw"]
 [ext_resource type="PackedScene" path="res://Dialogue/dialogue_marker.tscn" id="12_s1pdx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfh4b"]
@@ -153,24 +151,6 @@ size = Vector2(60, 31.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p10yw"]
 size = Vector2(3169, 929)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7qy5"]
-resource_local_to_scene = true
-shader = ExtResource("12_iamtq")
-shader_parameter/active = false
-shader_parameter/tint = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbfv3"]
-resource_local_to_scene = true
-shader = ExtResource("12_iamtq")
-shader_parameter/active = false
-shader_parameter/tint = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1fq7r"]
-resource_local_to_scene = true
-shader = ExtResource("12_iamtq")
-shader_parameter/active = false
-shader_parameter/tint = Color(1, 1, 1, 1)
-
 [node name="Moon0" type="Area2D" unique_id=221087728 node_paths=PackedStringArray("collision_shape")]
 script = ExtResource("1_p10yw")
 right_stage = "Moon1"
@@ -241,15 +221,3 @@ text_color = Color(1, 1, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=150140542]
 position = Vector2(1584.5, 464.5)
 shape = SubResource("RectangleShape2D_p10yw")
-
-[node name="keyBaby" parent="." unique_id=2130317688 instance=ExtResource("12_p10yw")]
-material = SubResource("ShaderMaterial_b7qy5")
-position = Vector2(2410, 421)
-
-[node name="keyBaby2" parent="." unique_id=1962113864 instance=ExtResource("12_p10yw")]
-material = SubResource("ShaderMaterial_bbfv3")
-position = Vector2(2346, 380)
-
-[node name="keyBaby3" parent="." unique_id=1182289809 instance=ExtResource("12_p10yw")]
-material = SubResource("ShaderMaterial_1fq7r")
-position = Vector2(2249, 329)

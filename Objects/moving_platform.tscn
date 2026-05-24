@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://b5eiro3xc1kf3"]
+
+[ext_resource type="Texture2D" uid="uid://cof5ude8rgrsb" path="res://Objects/movingbullshit-Sheet.png" id="1_dqaly"]
+[ext_resource type="Script" uid="uid://co6etw3eurh2d" path="res://Objects/moving_platform.gd" id="1_wgnl3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5m7p"]
+atlas = ExtResource("1_dqaly")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qo2h"]
+atlas = ExtResource("1_dqaly")
+region = Rect2(64, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujqi7"]
+atlas = ExtResource("1_dqaly")
+region = Rect2(128, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwh5d"]
+atlas = ExtResource("1_dqaly")
+region = Rect2(192, 0, 64, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fy008"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5m7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qo2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujqi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwh5d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_invsn"]
+size = Vector2(64.00001, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlvic"]
+size = Vector2(1.9999924, 62)
+
+[sub_resource type="Animation" id="Animation_dlvic"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movingPlatform:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_invsn"]
+resource_name = "progress"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movingPlatform:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlvic"]
+_data = {
+&"RESET": SubResource("Animation_dlvic"),
+&"progress": SubResource("Animation_invsn")
+}
+
+[node name="movingPlatform" type="PathFollow2D" unique_id=1311466430]
+z_index = 2
+rotation = -1.5707964
+rotates = false
+script = ExtResource("1_wgnl3")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=891856618]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatableBody2D" unique_id=1764828590]
+z_index = 7
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_fy008")
+autoplay = "default"
+frame_progress = 0.63596255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1760982059]
+position = Vector2(-5.5, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_invsn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=899228740]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=213661455]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_dlvic")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=869975176]
+remote_path = NodePath("../AnimatableBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=680840839]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_dlvic")
+speed_scale = 0.5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
