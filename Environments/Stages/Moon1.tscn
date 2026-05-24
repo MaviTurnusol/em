@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://b7yxou8hk2sql" path="res://Objects/checkpoint_flag.tscn" id="2_71j1s"]
 [ext_resource type="PackedScene" uid="uid://b25eorp6e5sgm" path="res://Environments/hurtful_tiles.tscn" id="3_ce5vl"]
 [ext_resource type="PackedScene" uid="uid://b5eiro3xc1kf3" path="res://Objects/moving_platform.tscn" id="5_invsn"]
-[ext_resource type="PackedScene" uid="uid://oqmcwrxo28cr" path="res://Common/cam.tscn" id="6_dlvic"]
-[ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="7_d5m7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce5vl"]
 size = Vector2(2337, 928.5)
@@ -19,9 +17,16 @@ point_count = 2
 
 [node name="Moon1" type="Area2D" unique_id=1999014939 node_paths=PackedStringArray("collision_shape")]
 script = ExtResource("1_tcuhw")
+right_stage = "Moon2"
 left_stage = "Moon0"
 collision_shape = NodePath("CollisionShape2D")
 metadata/_custom_type_script = "uid://cwm6pb6ovu4va"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2038171078]
+z_index = -10
+offset_right = 2336.0
+offset_bottom = 928.0
+color = Color(0, 0, 0, 1)
 
 [node name="CheckpointFlag" parent="." unique_id=326458859 instance=ExtResource("2_71j1s")]
 position = Vector2(152, 608)
@@ -46,15 +51,3 @@ curve = SubResource("Curve2D_dlvic")
 
 [node name="movingPlatform" parent="Path2D" unique_id=1311466430 instance=ExtResource("5_invsn")]
 position = Vector2(1030, 415)
-
-[node name="cam" parent="." unique_id=856952253 node_paths=PackedStringArray("target") instance=ExtResource("6_dlvic")]
-position = Vector2(1109, 334)
-position_smoothing_speed = 10.0
-target = NodePath("../Player/Node2D")
-
-[node name="Player" parent="." unique_id=830846263 instance=ExtResource("7_d5m7p")]
-z_index = 6
-position = Vector2(1110, 414)
-
-[node name="Node2D" type="Node2D" parent="Player" unique_id=734193736]
-position = Vector2(0, -80)

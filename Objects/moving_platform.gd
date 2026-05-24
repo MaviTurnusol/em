@@ -1,7 +1,11 @@
 extends PathFollow2D
 
 var is_player_on = false
+@export var speed = 0.5
 
+func _ready() -> void:
+	$AnimationPlayer.speed_scale = speed
+	
 func _process(_delta: float) -> void:
 	$AnimatableBody2D/AnimatedSprite2D.speed_scale = (0.5 - abs(0.5 - progress_ratio))*2.0
 	#0.0 -> 0.0
@@ -9,6 +13,9 @@ func _process(_delta: float) -> void:
 	#0.5 -> 1.0
 	#0.9 -> 0.1
 	#1.0 -> 0.0
+	#if is_player_on:
+		#if Input.is_action_just_pressed("jump"):
+			#UnlimitedRulebook.player.machine.change_state_to("jump")
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
