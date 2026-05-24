@@ -3,9 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://blweh0hi46c6d" path="res://Environments/Sprites/BGPlaceHolder.png" id="1_63pc3"]
 [ext_resource type="Texture2D" uid="uid://dyyd15gr881fv" path="res://Environments/Sprites/tilesetPlaceHolder.png" id="2_83wgp"]
 [ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="2_avm35"]
+[ext_resource type="Script" uid="uid://cu3m5ncysntqk" path="res://Common/cam_script.gd" id="3_ql3kt"]
 [ext_resource type="PackedScene" uid="uid://22enwy1the5w" path="res://Environments/l_block.tscn" id="4_avm35"]
 [ext_resource type="PackedScene" uid="uid://dlyhfn5cnuudk" path="res://Environments/coin.tscn" id="5_3aomy"]
 [ext_resource type="PackedScene" uid="uid://byif2u1t0xik7" path="res://Environments/hub.tscn" id="6_dgawy"]
+[ext_resource type="Texture2D" uid="uid://dpp4ixlfh0cj4" path="res://Objects/dynasty-Sheet.png" id="7_xndbp"]
+[ext_resource type="PackedScene" uid="uid://btqts325owl28" path="res://Common/actionable.tscn" id="8_4tkyq"]
+[ext_resource type="Resource" uid="uid://bfk2csw5j1pd7" path="res://Dialogue/test_dial.dialogue" id="9_ghcar"]
+[ext_resource type="PackedScene" path="res://Dialogue/dialogue_marker.tscn" id="10_1o3qn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avm35"]
 texture = ExtResource("2_83wgp")
@@ -49,6 +54,87 @@ texture = ExtResource("2_83wgp")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_avm35")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tkyq"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(0, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghcar"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(30, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o3qn"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(60, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql3kt"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(90, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbytj"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(120, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ny1s"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(150, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll72v"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(180, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbyrw"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(210, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74xw3"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(240, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go5j5"]
+atlas = ExtResource("7_xndbp")
+region = Rect2(270, 0, 30, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oenpa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tkyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghcar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o3qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql3kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbytj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ny1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll72v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbyrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74xw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go5j5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghcar"]
+size = Vector2(60, 31.5)
+
 [node name="Lab1" type="Node2D" unique_id=1114061177]
 
 [node name="L_Block" parent="." unique_id=2122050911 instance=ExtResource("4_avm35")]
@@ -59,15 +145,19 @@ offset_right = 2543.0
 offset_bottom = 1241.0
 scale = Vector2(0.25, 0.25)
 
-[node name="Player" parent="." unique_id=830846263 node_paths=PackedStringArray("cam") groups=["Player"] instance=ExtResource("2_avm35")]
+[node name="Player" parent="." unique_id=830846263 node_paths=PackedStringArray("cam") instance=ExtResource("2_avm35")]
 position = Vector2(731, 244)
-cam = NodePath("Camera2D")
+cam = NodePath("Node2D/Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=385918236]
-position = Vector2(0, -38)
+[node name="Node2D" type="Node2D" parent="Player" unique_id=752355557]
+position = Vector2(0, -67)
+
+[node name="Camera2D" type="Camera2D" parent="Player/Node2D" unique_id=385918236 node_paths=PackedStringArray("target")]
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+script = ExtResource("3_ql3kt")
+target = NodePath("..")
 
 [node name="tiles" type="Node2D" parent="." unique_id=987815538]
 
@@ -97,3 +187,20 @@ position = Vector2(-16, 248)
 position = Vector2(8, 248)
 
 [node name="HUB" parent="." unique_id=1402214287 instance=ExtResource("6_dgawy")]
+
+[node name="kingmaker" type="AnimatedSprite2D" parent="." unique_id=994956813]
+position = Vector2(300, 256)
+sprite_frames = SubResource("SpriteFrames_oenpa")
+autoplay = "default"
+frame_progress = 0.78378254
+
+[node name="Actionable" parent="kingmaker" unique_id=1127282966 instance=ExtResource("8_4tkyq")]
+dialogue_resource = ExtResource("9_ghcar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kingmaker/Actionable" unique_id=331593846]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_ghcar")
+
+[node name="DialogueMarker" parent="kingmaker" unique_id=1964780304 instance=ExtResource("10_1o3qn")]
+character_name = "Kingmaker"
+text_color = Color(1, 1, 1, 1)

@@ -1,0 +1,24 @@
+[gd_resource type="Theme" format=3 uid="uid://dhbsoy6lxe55r"]
+
+[ext_resource type="FontFile" uid="uid://b724fno2tgysx" path="res://Dialogue/MintsodaLimeGreen16X16Regular-EanDl.ttf" id="1_bd4yt"]
+[ext_resource type="Texture2D" uid="uid://daddetfufmaql" path="res://Dialogue/textboxpurple.png" id="2_jprho"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ae706"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a7x2r"]
+texture = ExtResource("2_jprho")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[resource]
+default_font_size = 20
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_bd4yt")
+Label/styles/focus = SubResource("StyleBoxEmpty_ae706")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_a7x2r")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/normal_font = ExtResource("1_bd4yt")

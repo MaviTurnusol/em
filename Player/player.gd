@@ -16,6 +16,10 @@ var bufferedJump = false
 var inWallJumpBufferArea = false
 var bufferedWallJump = false
 
+var can_input = true
+
+var train = []
+
 @export var cam : Camera2D
 
 func _ready():
@@ -23,49 +27,52 @@ func _ready():
 	
 func _physics_process(delta):
 	$DebugLabel.text = str(machine.get_state())
+	choo_choo()
 	
 	if cam:
 		if is_instance_valid(cam):
 			UnlimitedRulebook.cam = cam
 	
 	#Dashing
-	if Input.is_action_just_pressed("run"):
-		if dashes > 0:
-			machine.change_state_to("dash")
-			dashes -= 1
+	if can_input:
+		if Input.is_action_just_pressed("run"):
+			if dashes > 0:
+				machine.change_state_to("dash")
+				dashes -= 1
 	
 	#Jumping
-	if Input.is_action_just_pressed("jump"):
-		if machine.get_state() == "walled":
-			velocity.x = get_wall_normal().x * speed*3.2
-			if get_wall_normal().x == 1.0:
-				flip("right")
-			if get_wall_normal().x == -1.0:
-				flip("left")
-		machine.change_state_to("jump")
-	if inJumpBufferArea:
+	if can_input:
 		if Input.is_action_just_pressed("jump"):
-			if velocity.y > 0:
-				bufferedJump = true
-	if bufferedJump:
-		if is_on_floor():
+			if machine.get_state() == "walled":
+				velocity.x = get_wall_normal().x * speed*3.2
+				if get_wall_normal().x == 1.0:
+					flip("right")
+				if get_wall_normal().x == -1.0:
+					flip("left")
 			machine.change_state_to("jump")
-			bufferedJump = false
-		
-	if inWallJumpBufferArea:
-		if Input.is_action_just_pressed("jump"):
-			if !is_on_floor():
-				bufferedWallJump = true
-				$wallJumpBufferFader.start()
-	if bufferedWallJump:
-		if machine.get_state() == "walled":
-			velocity.x = get_wall_normal().x * speed*3.2
-			if get_wall_normal().x == 1.0:
-				flip("right")
-			if get_wall_normal().x == -1.0:
-				flip("left")
-			machine.change_state_to("jump")
-			bufferedWallJump = false
+		if inJumpBufferArea:
+			if Input.is_action_just_pressed("jump"):
+				if velocity.y > 0:
+					bufferedJump = true
+		if bufferedJump:
+			if is_on_floor():
+				machine.change_state_to("jump")
+				bufferedJump = false
+			
+		if inWallJumpBufferArea:
+			if Input.is_action_just_pressed("jump"):
+				if !is_on_floor():
+					bufferedWallJump = true
+					$wallJumpBufferFader.start()
+		if bufferedWallJump:
+			if machine.get_state() == "walled":
+				velocity.x = get_wall_normal().x * speed*3.2
+				if get_wall_normal().x == 1.0:
+					flip("right")
+				if get_wall_normal().x == -1.0:
+					flip("left")
+				machine.change_state_to("jump")
+				bufferedWallJump = false
 	
 	#After-Images
 	if velocity.length() >= 580.0 && $ghostTimer.is_stopped() && machine.get_state() != "idle":
@@ -79,35 +86,39 @@ func _physics_process(delta):
 			machine.change_state_to("fall")
 	
 	#Wall Slide
-	if is_on_wall() && velocity.y > -40.0:
+	if is_on_wall() && velocity.y > -40.0 && !is_on_floor():
 		machine.change_state_to("walled")
 	
 	#Rolling
-	if Input.is_action_just_pressed("misc"):
-		machine.change_state_to("roll")
+	if can_input:
+		if Input.is_action_just_pressed("misc"):
+			machine.change_state_to("roll")
 	
 	#Walking
-	var dir_ = Input.get_axis("left", "right")
-	if machine.get_state() not in ["roll", "dash"]:
-		if dir_:
-			dir = dir_
-			if Input.is_action_pressed("run"):
-				velocity.x = lerp(velocity.x, dir*speed*1.6, acceleration)
-				if is_on_floor(): machine.change_state_to("run")
+	if can_input:
+		var dir_ = Input.get_axis("left", "right")
+		if machine.get_state() not in ["roll", "dash"]:
+			if dir_:
+				dir = dir_
+				if Input.is_action_pressed("run"):
+					velocity.x = lerp(velocity.x, dir*speed*1.6, acceleration)
+					if is_on_floor(): machine.change_state_to("run")
+				else:
+					velocity.x = lerp(velocity.x, dir*speed, acceleration)
+					if is_on_floor(): machine.change_state_to("walk")
 			else:
-				velocity.x = lerp(velocity.x, dir*speed, acceleration)
-				if is_on_floor(): machine.change_state_to("walk")
-		else:
-			velocity.x = lerp(velocity.x, 0.0, 0.1)
-			if is_on_floor():
-				machine.change_state_to("idle")
-	
-	#Flipping Sprite/Hurtbox
-	if machine.get_state() not in ["jump", "fall", "roll"]:
-		if Input.is_action_pressed("left"):
-			flip("left")
-		elif Input.is_action_pressed("right"):
-			flip("right")
+				velocity.x = lerp(velocity.x, 0.0, 0.1)
+				if is_on_floor():
+					machine.change_state_to("idle")
+		
+		#Flipping Sprite/Hurtbox
+		if machine.get_state() not in ["jump", "fall", "roll"]:
+			if Input.is_action_pressed("left"):
+				flip("left")
+			elif Input.is_action_pressed("right"):
+				flip("right")
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 0.1)
 
 func flip(foo) -> void:
 	match foo:
@@ -178,3 +189,33 @@ func _on_wall_jump_buffer_body_exited(_body: Node2D) -> void:
 
 func _on_wall_jump_buffer_fader_timeout() -> void:
 	bufferedWallJump = false
+
+func choo_choo():
+	#train 1 follow me
+	#train 2 follow train 1
+	#train 3 follow train 2
+	for car_number in range(train.size()):
+		if car_number == 0:
+			train[car_number].global_position = lerp(train[car_number].global_position, 
+			get_closest_point_on_circle(train[car_number].global_position, global_position, 20.0), 0.1)
+		else:
+			train[car_number].global_position = lerp(train[car_number].global_position, 
+			get_closest_point_on_circle(train[car_number].global_position, 
+			train[car_number-1].global_position, 20.0), 0.1)
+	pass
+
+func get_distance_to_circle_edge(target_point: Vector2, circle_center: Vector2, radius: float) -> float:
+	# Get the distance from the target to the center
+	var distance_to_center = target_point.distance_to(circle_center)
+	# Subtract the radius to find the distance to the edge
+	var distance_to_edge = distance_to_center - radius
+	# Optional: Use abs() if the target point might be INSIDE the circle 
+	# and you want the distance to the nearest edge rather than a negative number.
+	return abs(distance_to_edge)
+
+func get_closest_point_on_circle(target_point: Vector2, circle_center: Vector2, radius: float) -> Vector2:
+	# Find the normalized direction vector from the center to the target
+	var direction = circle_center.direction_to(target_point)
+	# Multiply the direction by the radius and add it to the center position
+	var closest_point = circle_center + (direction * radius)
+	return closest_point

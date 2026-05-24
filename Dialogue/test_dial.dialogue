@@ -1,0 +1,6 @@
+~ start
+do UnlimitedRulebook.set_movable(false)
+Kingmaker: Press X to Jump
+Kingmaker: Press Z to Run Faster
+do UnlimitedRulebook.set_movable(true)
+=> END

@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 UnlimitedRulebook="*uid://c5ct2lev2njva"
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://Dialogue//balloon.tscn"
 
 [display]
 
@@ -31,19 +36,26 @@ window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
 window/canvas_textures/default_texture_filter=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://Common/": "blue",
+"res://Dialogue/": "orange",
 "res://Environments/": "teal",
 "res://Objects/": "orange",
-"res://Player/": "purple"
+"res://Player/": "purple",
+"res://addons/": "red"
 }
 
 [global_group]
 
 Player=""
 hurty=""
+actionable=""
 
 [input]
 
@@ -82,6 +94,10 @@ down={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://Dialogue/test_dial.dialogue")
 
 [physics]
 

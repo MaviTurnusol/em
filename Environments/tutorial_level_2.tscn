@@ -38,7 +38,7 @@ tile_map_data = PackedByteArray()
 [node name="Player" parent="." unique_id=830846263 instance=ExtResource("5_xjxls")]
 position = Vector2(-328, 80)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1768668349]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1768668349 node_paths=PackedStringArray("target")]
 process_callback = 0
 limit_left = -200
 limit_top = -200
@@ -46,5 +46,6 @@ limit_right = 200
 limit_bottom = 200
 position_smoothing_enabled = true
 script = ExtResource("6_km32p")
+target = NodePath("..")
 
 [node name="SliderObject" parent="." unique_id=765875186 instance=ExtResource("7_km32p")]

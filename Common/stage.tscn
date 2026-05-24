@@ -4,3 +4,9 @@
 
 [node name="Stage" type="Area2D" unique_id=2043129607]
 script = ExtResource("1_vc33r")
+
+[node name="Timer" type="Timer" parent="." unique_id=1410983457]
+wait_time = 0.33
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

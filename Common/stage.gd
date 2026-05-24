@@ -17,6 +17,7 @@ func _ready() -> void:
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
 	
+	
 	if right_stage:
 		adjacent_stages.append(right_stage)
 	if left_stage:
@@ -69,14 +70,17 @@ func unload_adjacent_stages():
 			get_parent().get_node(stage).queue_free()
 
 func tween_camera_borders():
+	#UnlimitedRulebook.set_movable(false)
 	var lefttween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	var righttween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	var toptween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	var bottomtween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
-	lefttween.tween_property(UnlimitedRulebook.cam, "limit_left", global_position.x, 0.33)
-	righttween.tween_property(UnlimitedRulebook.cam, "limit_right", global_position.x + collision_shape.shape.size.x, 0.33)
-	toptween.tween_property(UnlimitedRulebook.cam, "limit_top", global_position.y, 0.33)
-	bottomtween.tween_property(UnlimitedRulebook.cam, "limit_bottom", global_position.y + collision_shape.shape.size.y, 0.33)
+	lefttween.tween_property(UnlimitedRulebook.cam, "limit_left", global_position.x, 0.2)
+	righttween.tween_property(UnlimitedRulebook.cam, "limit_right", global_position.x + collision_shape.shape.size.x, 0.2)
+	toptween.tween_property(UnlimitedRulebook.cam, "limit_top", global_position.y, 0.2)
+	bottomtween.tween_property(UnlimitedRulebook.cam, "limit_bottom", global_position.y + collision_shape.shape.size.y, 0.2)
+	#await get_tree().create_timer(0.33).timeout
+	#UnlimitedRulebook.set_movable(true)
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
