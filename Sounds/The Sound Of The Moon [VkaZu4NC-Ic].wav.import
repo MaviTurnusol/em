@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bltc0yabfrv5o"
+path="res://.godot/imported/The Sound Of The Moon [VkaZu4NC-Ic].wav-ce8ca2ced22d58aebcf256bc2e9489f9.sample"
+
+[deps]
+
+source_file="res://Sounds/The Sound Of The Moon [VkaZu4NC-Ic].wav"
+dest_files=["res://.godot/imported/The Sound Of The Moon [VkaZu4NC-Ic].wav-ce8ca2ced22d58aebcf256bc2e9489f9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

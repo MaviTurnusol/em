@@ -6,7 +6,7 @@
 script = ExtResource("1_uwa05")
 animName = "jump"
 cantTransitionFrom = PackedStringArray("dash", "roll")
-cantTransitionTo = PackedStringArray("roll", "walk", "run", "jump", "fall")
+cantTransitionTo = PackedStringArray("roll", "walk", "run", "jump", "fall", "dash")
 metadata/_custom_type_script = "uid://ry5rn0gmh7as"
 
 [node name="Timer" type="Timer" parent="." unique_id=1242811564]

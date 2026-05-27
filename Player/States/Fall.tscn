@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://cglgi81mf7poy"]
 
 [ext_resource type="Script" uid="uid://cx41g3pkbi4v5" path="res://Player/States/fall.gd" id="1_x1lpj"]
+[ext_resource type="AudioStream" uid="uid://xjp4du7lqnff" path="res://Sounds/land_10_moon_01.wav" id="2_8uw32"]
+[ext_resource type="AudioStream" uid="uid://cs6j7nl2j31sb" path="res://Sounds/land_10_moon_02.wav" id="3_nsf43"]
+[ext_resource type="AudioStream" uid="uid://lsax6pycefry" path="res://Sounds/land_10_moon_03.wav" id="4_cuuiq"]
+[ext_resource type="AudioStream" uid="uid://dj66oxmebk4w6" path="res://Sounds/land_10_moon_04.wav" id="5_j0ye4"]
+[ext_resource type="AudioStream" uid="uid://dxp6w02qpqcap" path="res://Sounds/land_10_moon_05.wav" id="6_twjpc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qg0kx"]
+streams_count = 5
+stream_0/stream = ExtResource("2_8uw32")
+stream_1/stream = ExtResource("3_nsf43")
+stream_2/stream = ExtResource("4_cuuiq")
+stream_3/stream = ExtResource("5_j0ye4")
+stream_4/stream = ExtResource("6_twjpc")
 
 [node name="Fall" type="Node" unique_id=717196701]
 script = ExtResource("1_x1lpj")
@@ -8,3 +21,6 @@ animName = "fall"
 cantTransitionFrom = PackedStringArray("fall")
 cantTransitionTo = PackedStringArray("fall")
 metadata/_custom_type_script = "uid://ry5rn0gmh7as"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1843883009]
+stream = SubResource("AudioStreamRandomizer_qg0kx")

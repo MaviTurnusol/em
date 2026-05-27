@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dpjwx6267k6hy"]
 
 [ext_resource type="Script" uid="uid://cx8p33lpmvtjh" path="res://Player/States/walled.gd" id="1_teg3r"]
+[ext_resource type="AudioStream" uid="uid://4f3lab0i5q2f" path="res://Sounds/wallslide_general.wav" id="2_pyadc"]
 
 [node name="Walled" type="Node" unique_id=1343920780]
 script = ExtResource("1_teg3r")
@@ -8,3 +9,7 @@ animName = "wallSlide"
 cantTransitionFrom = PackedStringArray("walled")
 cantTransitionTo = PackedStringArray("walled")
 metadata/_custom_type_script = "uid://ry5rn0gmh7as"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2092097037]
+stream = ExtResource("2_pyadc")
+volume_db = -7.5

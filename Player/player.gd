@@ -6,6 +6,7 @@ var jumpVelocity = -400.0
 @onready var machine = $StateMachine
 var dir = 1.0
 var dashDuration = 0.2
+var onDashCooldown = false
 
 var acceleration = 0.1
 var dashes = 0
@@ -35,10 +36,14 @@ func _physics_process(delta):
 	
 	#Dashing
 	if can_input:
-		if Input.is_action_just_pressed("run"):
-			if dashes > 0:
-				machine.change_state_to("dash")
-				dashes -= 1
+		if !onDashCooldown:
+			if Input.is_action_just_pressed("run"):
+				if dashes > 0:
+					machine.change_state_to("dash")
+					$dashSounds.play()
+					$dashCooldown.start()
+					dashes -= 1
+					onDashCooldown = true
 	if is_on_floor():
 		dashes = 0
 	if dashes > 0:
@@ -101,6 +106,7 @@ func _physics_process(delta):
 			machine.change_state_to("roll")
 	
 	#Walking
+	stepper()
 	if can_input:
 		var dir_ = Input.get_axis("left", "right")
 		if machine.get_state() not in ["roll", "dash"]:
@@ -134,6 +140,7 @@ func flip(foo) -> void:
 			$Marker2D.scale.x = 1
 
 func death():
+	$deathSound.play()
 	dashes = 0
 	var cumplosion = load("res://Objects/dash_explosion.tscn").instantiate()
 	cumplosion.global_position = global_position + Vector2(0, -16)
@@ -231,3 +238,19 @@ func get_closest_point_on_circle(target_point: Vector2, circle_center: Vector2, 
 	# Multiply the direction by the radius and add it to the center position
 	var closest_point = circle_center + (direction * radius)
 	return closest_point
+
+func stepper():
+	if !$stepSounds.playing:
+		if anima.animation == "run":
+			if anima.frame in [1, 5]:
+				$stepSounds.play()
+		if anima.animation == "walk":
+			if anima.frame in [3, 7]:
+				$stepSounds.play()
+		#if anima.animation == "idle":
+			#if anima.frame in [0]:
+				#$stepSounds.play()
+
+
+func _on_dash_cooldown_timeout() -> void:
+	onDashCooldown = false

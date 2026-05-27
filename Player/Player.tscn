@@ -22,6 +22,16 @@
 [ext_resource type="PackedScene" uid="uid://bnalgbcjsbw1m" path="res://Player/States/Dash.tscn" id="18_3nb2p"]
 [ext_resource type="Script" uid="uid://dd107nipjtisj" path="res://Player/actionable_finder.gd" id="19_d7xyo"]
 [ext_resource type="PackedScene" uid="uid://cdrly3kn7ygrx" path="res://Objects/dash_circle.tscn" id="22_u5tep"]
+[ext_resource type="AudioStream" uid="uid://blcwo8xyilsjr" path="res://Sounds/foot_00_dirt_01.wav" id="23_wo5nf"]
+[ext_resource type="AudioStream" uid="uid://f1vrmkjb0fhn" path="res://Sounds/foot_00_dirt_02.wav" id="24_croik"]
+[ext_resource type="AudioStream" uid="uid://djnite1wtj4rf" path="res://Sounds/foot_00_dirt_03.wav" id="25_bgaaw"]
+[ext_resource type="AudioStream" uid="uid://bo5qlwb2vugvi" path="res://Sounds/foot_00_dirt_04.wav" id="26_gv3fu"]
+[ext_resource type="AudioStream" uid="uid://dj5px2cdt5pkp" path="res://Sounds/foot_00_dirt_05.wav" id="27_xu7fl"]
+[ext_resource type="AudioStream" uid="uid://fpaxwex2ifnu" path="res://Sounds/foot_00_dirt_06.wav" id="28_78fhc"]
+[ext_resource type="AudioStream" uid="uid://be85gkmyerrwj" path="res://Sounds/foot_00_dirt_07.wav" id="29_4n5ed"]
+[ext_resource type="AudioStream" uid="uid://c41kdpkwircy3" path="res://Sounds/dash_red_left.wav" id="30_bgaaw"]
+[ext_resource type="AudioStream" uid="uid://cwvlqtvpl2aff" path="res://Sounds/dash_red_right.wav" id="31_gv3fu"]
+[ext_resource type="AudioStream" uid="uid://787vs4bv8i3i" path="res://Sounds/death.wav" id="32_gv3fu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yifbt"]
 resource_local_to_scene = true
@@ -460,6 +470,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_roy6y"]
 size = Vector2(26, 26)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yf47d"]
+streams_count = 7
+stream_0/stream = ExtResource("23_wo5nf")
+stream_1/stream = ExtResource("24_croik")
+stream_2/stream = ExtResource("25_bgaaw")
+stream_3/stream = ExtResource("26_gv3fu")
+stream_4/stream = ExtResource("27_xu7fl")
+stream_5/stream = ExtResource("28_78fhc")
+stream_6/stream = ExtResource("29_4n5ed")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xu7fl"]
+streams_count = 2
+stream_0/stream = ExtResource("30_bgaaw")
+stream_1/stream = ExtResource("31_gv3fu")
+
 [node name="Player" type="CharacterBody2D" unique_id=830846263 groups=["Player"]]
 z_index = 1
 material = SubResource("ShaderMaterial_yifbt")
@@ -488,7 +513,7 @@ color = Color(1, 1, 1, 0)
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_8agqw")
-animation = &"fall"
+animation = &"run"
 autoplay = "idle"
 
 [node name="HurtBox" parent="Marker2D" unique_id=464789721 node_paths=PackedStringArray("father", "healthComp", "InvulnTimer") instance=ExtResource("8_3mea3")]
@@ -577,9 +602,25 @@ modulate = Color(0.35000002, 0.4475001, 1, 1)
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_roy6y")
 
+[node name="stepSounds" type="AudioStreamPlayer" parent="." unique_id=960177166]
+stream = SubResource("AudioStreamRandomizer_yf47d")
+pitch_scale = 0.75
+
+[node name="dashSounds" type="AudioStreamPlayer" parent="." unique_id=1716720726]
+stream = SubResource("AudioStreamRandomizer_xu7fl")
+
+[node name="deathSound" type="AudioStreamPlayer" parent="." unique_id=1440921388]
+stream = ExtResource("32_gv3fu")
+volume_db = -7.5
+
+[node name="dashCooldown" type="Timer" parent="." unique_id=1372725270]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="jumpBuffer" to="." method="_on_jump_buffer_body_entered"]
 [connection signal="body_exited" from="jumpBuffer" to="." method="_on_jump_buffer_body_exited"]
 [connection signal="body_entered" from="wallJumpBuffer" to="." method="_on_wall_jump_buffer_body_entered"]
 [connection signal="body_exited" from="wallJumpBuffer" to="." method="_on_wall_jump_buffer_body_exited"]
 [connection signal="timeout" from="ghostTimer" to="." method="_on_ghost_timer_timeout"]
 [connection signal="timeout" from="wallJumpBufferFader" to="." method="_on_wall_jump_buffer_fader_timeout"]
+[connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]

@@ -36,10 +36,13 @@ position = Vector2(704, 464)
 shape = SubResource("RectangleShape2D_ebin1")
 
 [node name="DashOrb" parent="." unique_id=1444668912 instance=ExtResource("4_u0xgg")]
-position = Vector2(460, 257)
+position = Vector2(611, 247)
 
 [node name="DashOrb2" parent="." unique_id=303736979 instance=ExtResource("4_u0xgg")]
 position = Vector2(611, 257)
 
 [node name="CheckpointFlag" parent="." unique_id=326458859 instance=ExtResource("5_u0xgg")]
 position = Vector2(201, 291)
+
+[node name="DashOrb3" parent="." unique_id=543405269 instance=ExtResource("4_u0xgg")]
+position = Vector2(431, 248)

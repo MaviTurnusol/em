@@ -48,6 +48,7 @@ folder_colors={
 "res://Environments/": "teal",
 "res://Objects/": "orange",
 "res://Player/": "purple",
+"res://Sounds/": "teal",
 "res://addons/": "red"
 }
 

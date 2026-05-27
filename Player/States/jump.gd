@@ -1,6 +1,7 @@
 extends State
 
 func Start():
+	$jumpSounds.play()
 	stateOwner.velocity.y = stateOwner.jumpVelocity
 
 func PhysicsProcess(_delta):

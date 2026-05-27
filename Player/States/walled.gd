@@ -7,6 +7,8 @@ func Start():
 		stateOwner.flip("right")
 
 func PhysicsProcess(delta):
+	if !$AudioStreamPlayer.playing:
+		$AudioStreamPlayer.play()
 	stateOwner.move_and_slide()
 	
 	stateOwner.velocity.y = clamp(stateOwner.velocity.y + 
@@ -14,4 +16,9 @@ func PhysicsProcess(delta):
 	
 	if !stateOwner.is_on_wall():
 		machine.change_state_to("idle")
-	
+
+func End():
+	#var twink = get_tree().create_tween()
+	#twink.tween_property($AudioStreamPlayer, "volume_db", -80.0, 
+	#2.07-(AudioServer.get_time_since_last_mix() + $AudioStreamPlayer.get_playback_position()))
+	$AudioStreamPlayer.stop()

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btwdpmkv2q21e"]
 
 [ext_resource type="Script" uid="uid://cwajdh7gqovsx" path="res://Player/States/jump.gd" id="1_36t66"]
+[ext_resource type="AudioStream" uid="uid://bi5xap5kc21tk" path="res://Sounds/jump.wav" id="2_oo228"]
 
 [node name="Jump" type="Node" unique_id=234371468]
 script = ExtResource("1_36t66")
@@ -8,3 +9,6 @@ animName = "jump"
 cantTransitionFrom = PackedStringArray("roll", "jump", "fall")
 cantTransitionTo = PackedStringArray("jump")
 metadata/_custom_type_script = "uid://ry5rn0gmh7as"
+
+[node name="jumpSounds" type="AudioStreamPlayer" parent="." unique_id=225303241]
+stream = ExtResource("2_oo228")
