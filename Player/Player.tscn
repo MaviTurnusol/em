@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bb5sdtdwohgm6"]
 
 [ext_resource type="Shader" uid="uid://whim4thq5iji" path="res://Common/hitflashscript.gdshader" id="1_d7xyo"]
+[ext_resource type="Shader" uid="uid://1vftnrrv4gj1" path="res://Player/colorswap.gdshader" id="1_evw08"]
 [ext_resource type="Script" uid="uid://dtbsmv8gs0mfg" path="res://Player/player.gd" id="1_j23h2"]
 [ext_resource type="PackedScene" uid="uid://dadw07nmogo6t" path="res://Common/HealthComp.tscn" id="1_s1rgi"]
 [ext_resource type="Texture2D" uid="uid://bjiruyku4ggx7" path="res://Player/Sprites/Placeholder/Player Idle 48x48.png" id="3_0j2ni"]
@@ -20,11 +21,30 @@
 [ext_resource type="PackedScene" uid="uid://dpjwx6267k6hy" path="res://Player/States/Walled.tscn" id="17_8sa4y"]
 [ext_resource type="PackedScene" uid="uid://bnalgbcjsbw1m" path="res://Player/States/Dash.tscn" id="18_3nb2p"]
 [ext_resource type="Script" uid="uid://dd107nipjtisj" path="res://Player/actionable_finder.gd" id="19_d7xyo"]
+[ext_resource type="PackedScene" uid="uid://cdrly3kn7ygrx" path="res://Objects/dash_circle.tscn" id="22_u5tep"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yifbt"]
+resource_local_to_scene = true
 shader = ExtResource("1_d7xyo")
 shader_parameter/active = false
-shader_parameter/tint = Color(1, 0, 0, 1)
+shader_parameter/tint = Color(1, 1, 1, 0.050980393)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_roy6y"]
+shader = ExtResource("1_evw08")
+shader_parameter/time_scale = 1.0
+shader_parameter/primary_color = Color(1, 1, 1, 1)
+shader_parameter/secondary_color = Color(1, 1, 1, 1)
+shader_parameter/turbulence = 0.2
+shader_parameter/distortion = 0.1
+shader_parameter/ring_count_influence = 10.0
+shader_parameter/go_backwards = false
+shader_parameter/alpha_blend = 10.0
+shader_parameter/color_mix = Color(1, 1, 1, 1)
+shader_parameter/distortion_speed = 1.0
+shader_parameter/ring_speed = 1.0
+shader_parameter/final_alpha_multi = 1.0
+shader_parameter/opacity_smoothstep_1 = -0.25
+shader_parameter/opacity_smoothstep_2 = 1.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8agqw"]
 atlas = ExtResource("3_0j2ni")
@@ -453,22 +473,38 @@ father = NodePath("..")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1391081976]
 use_parent_material = true
 
+[node name="dashCircle" parent="Marker2D" unique_id=1880730462 instance=ExtResource("22_u5tep")]
+position = Vector2(0, -15)
+
+[node name="glow" type="ColorRect" parent="Marker2D" unique_id=2069138412]
+material = SubResource("ShaderMaterial_roy6y")
+offset_left = -25.0
+offset_top = -40.0
+offset_right = 25.0
+offset_bottom = 10.0
+color = Color(1, 1, 1, 0)
+
 [node name="anima" type="AnimatedSprite2D" parent="Marker2D" unique_id=293612101]
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_8agqw")
-animation = &"wallSlide"
+animation = &"fall"
 autoplay = "idle"
 
-[node name="HurtBox" parent="Marker2D" unique_id=464789721 node_paths=PackedStringArray("father", "healthComp") instance=ExtResource("8_3mea3")]
+[node name="HurtBox" parent="Marker2D" unique_id=464789721 node_paths=PackedStringArray("father", "healthComp", "InvulnTimer") instance=ExtResource("8_3mea3")]
 collision_layer = 4
 collision_mask = 4
 father = NodePath("../..")
 healthComp = NodePath("../../HealthComp")
+InvulnTimer = NodePath("Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HurtBox" unique_id=2023041358]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_3nb2p")
+
+[node name="Timer" type="Timer" parent="Marker2D/HurtBox" unique_id=1029645678]
+wait_time = 0.2
+one_shot = true
 
 [node name="leftCast" type="RayCast2D" parent="Marker2D" unique_id=1186920144]
 position = Vector2(0, -10)

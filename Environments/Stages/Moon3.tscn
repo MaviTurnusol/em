@@ -17,6 +17,7 @@ size = Vector2(640, 928)
 [node name="Moon3" type="Area2D" unique_id=951334464 node_paths=PackedStringArray("collision_shape")]
 script = ExtResource("1_kow4a")
 left_stage = "Moon2"
+bottom_stage = "Moon4"
 collision_shape = NodePath("CollisionShape2D")
 metadata/_custom_type_script = "uid://cwm6pb6ovu4va"
 

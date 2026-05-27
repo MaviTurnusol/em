@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cdrly3kn7ygrx"]
+
+[ext_resource type="Script" uid="uid://3g3pm5idqwkx" path="res://Objects/dash_circle.gd" id="1_4006n"]
+
+[node name="dashCircle" type="Node2D" unique_id=1880730462]
+script = ExtResource("1_4006n")

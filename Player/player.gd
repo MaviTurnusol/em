@@ -39,6 +39,12 @@ func _physics_process(delta):
 			if dashes > 0:
 				machine.change_state_to("dash")
 				dashes -= 1
+	if is_on_floor():
+		dashes = 0
+	if dashes > 0:
+		$Marker2D/glow.visible = true
+	else:
+		$Marker2D/glow.visible = false
 	
 	#Jumping
 	if can_input:
@@ -128,10 +134,16 @@ func flip(foo) -> void:
 			$Marker2D.scale.x = 1
 
 func death():
+	dashes = 0
+	var cumplosion = load("res://Objects/dash_explosion.tscn").instantiate()
+	cumplosion.global_position = global_position + Vector2(0, -16)
+	cumplosion.radius = -25
+	get_tree().root.add_child(cumplosion)
 	UnlimitedRulebook.frameFreeze(0.1, 0.25)
 	#await $hitflashPlayer.animation_finished
 	await get_tree().create_timer(0.1 * 0.25).timeout
 	global_position = UnlimitedRulebook.checkpoint
+	UnlimitedRulebook.emit_signal("death")
 
 func set_hurtbox_collision(val: bool) -> void:
 	if val == true:

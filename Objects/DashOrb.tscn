@@ -2,7 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://bdopuwxbfdfbo" path="res://Objects/PowerUpOutlined.png" id="1_6h01r"]
 [ext_resource type="Script" uid="uid://c7p1egpwgcly2" path="res://Objects/dash_orb.gd" id="1_p64p4"]
+[ext_resource type="Texture2D" uid="uid://b1wculqd6ve" path="res://Objects/dashRefillOutline.png" id="2_bctao"]
 [ext_resource type="Texture2D" uid="uid://sqlbxq8mmjlt" path="res://Objects/PowerUp.png" id="2_pur8j"]
+[ext_resource type="Shader" uid="uid://d3cri11tl42cq" path="res://Player/playerdash.gdshader" id="3_wh6e2"]
+[ext_resource type="Texture2D" uid="uid://bupllhh7xtnnw" path="res://Objects/dashRefill-Sheet.png" id="4_xj8ja"]
+[ext_resource type="Texture2D" uid="uid://b0cnkepidv5gq" path="res://Objects/dashRefillFlash-Sheet.png" id="5_gx0m3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8a1y"]
+shader = ExtResource("3_wh6e2")
+shader_parameter/sway_speed = 1.0
+shader_parameter/sway_strength = 0.0030000001425
+shader_parameter/noise_scale = 6.5790002650025
+shader_parameter/time_offset = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pur8j"]
 atlas = ExtResource("1_6h01r")
@@ -100,6 +111,26 @@ region = Rect2(240, 0, 24, 24)
 atlas = ExtResource("2_pur8j")
 region = Rect2(264, 0, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i57lc"]
+atlas = ExtResource("4_xj8ja")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc7f5"]
+atlas = ExtResource("4_xj8ja")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o26wm"]
+atlas = ExtResource("4_xj8ja")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkq6s"]
+atlas = ExtResource("4_xj8ja")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppf43"]
+atlas = ExtResource("4_xj8ja")
+region = Rect2(64, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogf6w"]
 animations = [{
 "frames": [{
@@ -183,6 +214,76 @@ animations = [{
 "loop": true,
 "name": &"no_outline",
 "speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i57lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc7f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o26wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkq6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppf43")
+}],
+"loop": true,
+"name": &"refill",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwhse"]
+atlas = ExtResource("5_gx0m3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ocrx"]
+atlas = ExtResource("5_gx0m3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nugnf"]
+atlas = ExtResource("5_gx0m3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipkdb"]
+atlas = ExtResource("5_gx0m3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7mav"]
+atlas = ExtResource("5_gx0m3")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icjll"]
+atlas = ExtResource("5_gx0m3")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gx6w5"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_gwhse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ocrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nugnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipkdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7mav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icjll")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pur8j"]
@@ -191,11 +292,23 @@ radius = 11.0
 [node name="DashOrb" type="Node2D" unique_id=1444668912]
 script = ExtResource("1_p64p4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1285052806]
+[node name="outline" type="Sprite2D" parent="." unique_id=488064505]
+scale = Vector2(2, 2)
+texture = ExtResource("2_bctao")
+
+[node name="orb" type="AnimatedSprite2D" parent="." unique_id=1285052806]
+material = SubResource("ShaderMaterial_e8a1y")
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ogf6w")
-animation = &"no_outline"
-autoplay = "no_outline"
-frame_progress = 0.03769452
+animation = &"refill"
+autoplay = "refill"
+frame_progress = 0.12799792
+
+[node name="flash" type="AnimatedSprite2D" parent="." unique_id=2106366440]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gx6w5")
+autoplay = "default"
+frame_progress = 0.6352548
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1022906971]
 

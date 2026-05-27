@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b25eorp6e5sgm" path="res://Environments/hurtful_tiles.tscn" id="6_vxh7s"]
 [ext_resource type="Texture2D" uid="uid://dpp4ixlfh0cj4" path="res://Objects/dynasty-Sheet.png" id="9_3s7en"]
 [ext_resource type="PackedScene" uid="uid://btqts325owl28" path="res://Common/actionable.tscn" id="10_ejuni"]
+[ext_resource type="PackedScene" uid="uid://c0ox5yd3qa14y" path="res://Objects/DashOrb.tscn" id="11_72cm6"]
 [ext_resource type="Resource" uid="uid://bfk2csw5j1pd7" path="res://Dialogue/test_dial.dialogue" id="11_pty8v"]
 [ext_resource type="PackedScene" path="res://Dialogue/dialogue_marker.tscn" id="12_s1pdx"]
 
@@ -221,3 +222,6 @@ text_color = Color(1, 1, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=150140542]
 position = Vector2(1584.5, 464.5)
 shape = SubResource("RectangleShape2D_p10yw")
+
+[node name="DashOrb" parent="." unique_id=1444668912 instance=ExtResource("11_72cm6")]
+position = Vector2(379, 317)

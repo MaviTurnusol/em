@@ -4,6 +4,9 @@ var player
 var cam
 var current_stage
 
+#signals
+signal death
+
 #This is a coin gain/up mechanic
 var coin = 0
 var score = 0

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c2jf18j1v4lyh"]
+
+[ext_resource type="Script" uid="uid://b8oqabj6jkwff" path="res://dash_explosion.gd" id="1_bi0xq"]
+
+[node name="DashExplosion" type="Node2D" unique_id=380490254]
+script = ExtResource("1_bi0xq")
+
+[node name="Timer" type="Timer" parent="." unique_id=1524231878]
+wait_time = 0.36
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

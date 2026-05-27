@@ -3,7 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://cgjf8lmk7hklm" path="res://Environments/Sprites/BGNeon.png" id="1_we0ip"]
 [ext_resource type="PackedScene" uid="uid://bb5sdtdwohgm6" path="res://Player/Player.tscn" id="2_lk3id"]
 [ext_resource type="PackedScene" uid="uid://oqmcwrxo28cr" path="res://Common/cam.tscn" id="3_we0ip"]
+[ext_resource type="Shader" uid="uid://whim4thq5iji" path="res://Common/hitflashscript.gdshader" id="4_2j0hd"]
 [ext_resource type="PackedScene" uid="uid://cfh8qnkitublt" path="res://Environments/Stages/MoonStart.tscn" id="4_we0ip"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2j0hd"]
+resource_local_to_scene = true
+shader = ExtResource("4_2j0hd")
+shader_parameter/active = false
+shader_parameter/tint = Color(1, 1, 1, 0.050980393)
 
 [node name="StageFatherThePrimordialOne" type="Node2D" unique_id=329805680]
 
@@ -26,9 +33,10 @@ target = NodePath("../Player/Node2D")
 
 [node name="Player" parent="." unique_id=830846263 instance=ExtResource("2_lk3id")]
 z_index = 6
+material = SubResource("ShaderMaterial_2j0hd")
 position = Vector2(90, 199)
 
 [node name="Node2D" type="Node2D" parent="Player" unique_id=490951289]
-position = Vector2(0, -80)
+position = Vector2(0, -45)
 
 [node name="MoonStart" parent="." unique_id=280462870 instance=ExtResource("4_we0ip")]
