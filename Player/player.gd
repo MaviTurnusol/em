@@ -16,6 +16,7 @@ var bufferedJump = false
 
 var inWallJumpBufferArea = false
 var bufferedWallJump = false
+var mover : AnimatableBody2D = null
 
 var can_input = true
 

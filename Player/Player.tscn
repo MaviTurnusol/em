@@ -488,6 +488,7 @@ stream_1/stream = ExtResource("31_gv3fu")
 [node name="Player" type="CharacterBody2D" unique_id=830846263 groups=["Player"]]
 z_index = 1
 material = SubResource("ShaderMaterial_yifbt")
+platform_on_leave = 2
 script = ExtResource("1_j23h2")
 
 [node name="HealthComp" parent="." unique_id=1596032001 node_paths=PackedStringArray("father") instance=ExtResource("1_s1rgi")]

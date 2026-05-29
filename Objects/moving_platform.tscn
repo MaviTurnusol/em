@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cof5ude8rgrsb" path="res://Objects/movingbullshit-Sheet.png" id="1_dqaly"]
 [ext_resource type="Script" uid="uid://co6etw3eurh2d" path="res://Objects/moving_platform.gd" id="1_wgnl3"]
+[ext_resource type="FontFile" uid="uid://bvfukcj8qmxo1" path="res://Objects/pixel_font.ttf" id="3_1me8s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5m7p"]
 atlas = ExtResource("1_dqaly")
@@ -104,11 +105,31 @@ shape = SubResource("RectangleShape2D_invsn")
 [node name="Area2D" type="Area2D" parent="AnimatableBody2D" unique_id=899228740]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/Area2D" unique_id=213661455]
-position = Vector2(0.5000019, 1.7763568e-15)
+position = Vector2(0.5000019, 2.1855778e-08)
 shape = SubResource("RectangleShape2D_dlvic")
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="AnimatableBody2D" unique_id=290981289]
 remote_path = NodePath("../Area2D")
+
+[node name="Label" type="Label" parent="AnimatableBody2D" unique_id=1943108197]
+offset_left = 3.9999988
+offset_top = 30.0
+offset_right = 59.0
+offset_bottom = 53.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("3_1me8s")
+theme_override_font_sizes/font_size = 6
+text = "Velocity: 10102"
+
+[node name="Label2" type="Label" parent="AnimatableBody2D" unique_id=1831578271]
+offset_left = 11.999999
+offset_top = 30.0
+offset_right = 67.0
+offset_bottom = 53.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("3_1me8s")
+theme_override_font_sizes/font_size = 6
+text = "Velocity: 10102"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=869975176]
 remote_path = NodePath("../AnimatableBody2D")
@@ -118,5 +139,10 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_dlvic")
 speed_scale = 0.5
 
+[node name="grace" type="Timer" parent="." unique_id=1514693622]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="AnimatableBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AnimatableBody2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="grace" to="." method="_on_grace_timeout"]
