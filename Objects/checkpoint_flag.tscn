@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://b7yxou8hk2sql"]
 
 [ext_resource type="Script" uid="uid://ctxqkysd7m5l0" path="res://Objects/checkpoint_flag.gd" id="1_150pg"]
-[ext_resource type="Texture2D" uid="uid://fsyshquvthxg" path="res://Objects/flagGreent.png" id="1_bfyft"]
-[ext_resource type="Texture2D" uid="uid://bd8bsxwbtdy32" path="res://Objects/flagWhitet.png" id="2_150pg"]
+[ext_resource type="Texture2D" uid="uid://tpardv4xt046" path="res://Objects/newflag0.png" id="2_150pg"]
+[ext_resource type="Texture2D" uid="uid://dxkw1rm5dfq6s" path="res://Objects/newflag1.png" id="3_oy78e"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_150pg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rso2"]
 atlas = ExtResource("2_150pg")
 region = Rect2(0, 0, 21, 29)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7p7ns"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw34e"]
 atlas = ExtResource("2_150pg")
 region = Rect2(21, 0, 21, 29)
 
@@ -16,29 +16,29 @@ region = Rect2(21, 0, 21, 29)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_150pg")
+"texture": SubResource("AtlasTexture_5rso2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7p7ns")
+"texture": SubResource("AtlasTexture_qw34e")
 }],
 "loop": false,
 "name": &"shade",
 "speed": 1.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oy78e"]
-atlas = ExtResource("1_bfyft")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l3ew"]
+atlas = ExtResource("3_oy78e")
 region = Rect2(0, 0, 21, 29)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5rso2"]
-atlas = ExtResource("1_bfyft")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p7ns"]
+atlas = ExtResource("3_oy78e")
 region = Rect2(21, 0, 21, 29)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qw34e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8ww6"]
 atlas = ExtResource("2_150pg")
 region = Rect2(0, 0, 21, 29)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0l3ew"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lmu6"]
 atlas = ExtResource("2_150pg")
 region = Rect2(21, 0, 21, 29)
 
@@ -46,10 +46,10 @@ region = Rect2(21, 0, 21, 29)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oy78e")
+"texture": SubResource("AtlasTexture_0l3ew")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5rso2")
+"texture": SubResource("AtlasTexture_7p7ns")
 }],
 "loop": true,
 "name": &"green",
@@ -57,10 +57,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qw34e")
+"texture": SubResource("AtlasTexture_i8ww6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0l3ew")
+"texture": SubResource("AtlasTexture_7lmu6")
 }],
 "loop": true,
 "name": &"white",
@@ -117,13 +117,15 @@ modulate = Color(0, 0, 0, 0.74509805)
 position = Vector2(12, -10)
 sprite_frames = SubResource("SpriteFrames_i8ww6")
 animation = &"shade"
+frame = 1
+frame_progress = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D" unique_id=549795453]
 position = Vector2(8, -14)
 sprite_frames = SubResource("SpriteFrames_7p7ns")
-animation = &"white"
+animation = &"green"
 autoplay = "white"
-frame_progress = 0.02843831
+frame_progress = 0.4460452
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1276449997]
 libraries/ = SubResource("AnimationLibrary_4pxtd")

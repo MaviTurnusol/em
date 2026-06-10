@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d0hs2kgiqubf0"]
+
+[ext_resource type="Script" uid="uid://cwm6pb6ovu4va" path="res://Common/stage.gd" id="1_2wu37"]
+[ext_resource type="PackedScene" uid="uid://b25eorp6e5sgm" path="res://Environments/hurtful_tiles.tscn" id="2_m41n5"]
+[ext_resource type="TileSet" uid="uid://colkori7v7d4f" path="res://Environments/CastleTileset_0.tres" id="3_wlt83"]
+
+[node name="stage_0" type="Area2D" unique_id=1614422985]
+script = ExtResource("1_2wu37")
+metadata/_custom_type_script = "uid://cwm6pb6ovu4va"
+
+[node name="tiles" type="Node2D" parent="." unique_id=2025815726]
+
+[node name="HurtfulTiles" parent="tiles" unique_id=997630280 instance=ExtResource("2_m41n5")]
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="tiles" unique_id=1577707091]
+tile_set = ExtResource("3_wlt83")
