@@ -112,6 +112,7 @@ shape = SubResource("RectangleShape2D_dlvic")
 remote_path = NodePath("../Area2D")
 
 [node name="Label" type="Label" parent="AnimatableBody2D" unique_id=1943108197]
+visible = false
 offset_left = 3.9999988
 offset_top = 30.0
 offset_right = 59.0
@@ -122,6 +123,7 @@ theme_override_font_sizes/font_size = 6
 text = "Velocity: 10102"
 
 [node name="Label2" type="Label" parent="AnimatableBody2D" unique_id=1831578271]
+visible = false
 offset_left = 11.999999
 offset_top = 30.0
 offset_right = 67.0

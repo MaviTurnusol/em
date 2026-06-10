@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 130.0
+var speed = 300.0
 var jumpVelocity = -400.0
 @onready var anima = $Marker2D/anima
 @onready var machine = $StateMachine

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ckep21w3n85m8"]
+
+[ext_resource type="TileSet" uid="uid://colkori7v7d4f" path="res://Environments/CastleTileset_0.tres" id="1_8ybtf"]
+
+[node name="TileMapLayer2" type="TileMapLayer" unique_id=405762140]
+z_index = 2
+tile_set = ExtResource("1_8ybtf")
