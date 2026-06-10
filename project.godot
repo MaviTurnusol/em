@@ -49,6 +49,7 @@ folder_colors={
 "res://Objects/": "orange",
 "res://Player/": "purple",
 "res://Sounds/": "teal",
+"res://Unluna/": "gray",
 "res://addons/": "red"
 }
 

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bscmqxhforwm6"]
+
+[ext_resource type="Script" uid="uid://b7u2bwaky1ivn" path="res://Unluna/unlunar_leg.gd" id="1_0prsp"]
+[ext_resource type="Texture2D" uid="uid://cobh1cem3j45g" path="res://Unluna/UnlunarLeg.png" id="1_qk2f4"]
+[ext_resource type="Texture2D" uid="uid://cgodpkkdrdoo2" path="res://icon.svg" id="2_jqdo8"]
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_qk2f4"]
+resource_local_to_scene = true
+target_nodepath = NodePath("Target")
+tip_nodepath = NodePath("Leg/Leg2/Tip")
+ccdik_data_chain_length = 3
+joint_data/0/bone_index = 0
+joint_data/0/bone2d_node = NodePath("Leg")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = false
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("Leg/Leg2")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = false
+joint_data/1/editor_draw_gizmo = true
+joint_data/2/bone_index = 2
+joint_data/2/bone2d_node = NodePath("Leg/Leg2/Tip")
+joint_data/2/rotate_from_joint = false
+joint_data/2/enable_constraint = true
+joint_data/2/constraint_angle_min = 0.0
+joint_data/2/constraint_angle_max = 0.0
+joint_data/2/constraint_angle_invert = false
+joint_data/2/constraint_in_localspace = true
+joint_data/2/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_jqdo8"]
+resource_local_to_scene = true
+enabled = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DCCDIK_qk2f4")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jqdo8"]
+resource_local_to_scene = true
+radius = 89.0
+
+[node name="LegSkeleton" type="Skeleton2D" unique_id=1727342046]
+modification_stack = SubResource("SkeletonModificationStack2D_jqdo8")
+script = ExtResource("1_0prsp")
+
+[node name="Leg" type="Bone2D" parent="." unique_id=1686456752]
+scale = Vector2(0.9999428, 0.9999428)
+rest = Transform2D(0.9999428, 0, 0, 0.9999428, 0, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Leg" unique_id=151637918]
+position = Vector2(0, 23)
+texture = ExtResource("1_qk2f4")
+
+[node name="Leg2" type="Bone2D" parent="Leg" unique_id=622963319]
+position = Vector2(0, 46)
+rest = Transform2D(1, 0, 0, 1, 0, 46)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Leg/Leg2" unique_id=2114433116]
+position = Vector2(0, 23)
+texture = ExtResource("1_qk2f4")
+
+[node name="Tip" type="Bone2D" parent="Leg/Leg2" unique_id=123147220]
+position = Vector2(0, 46)
+rest = Transform2D(1, 0, 0, 1, 0, 46)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Target" type="Node2D" parent="." unique_id=1912489187]
+position = Vector2(0, 92)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target" unique_id=2069018762]
+scale = Vector2(0.0859375, 0.0859375)
+texture = ExtResource("2_jqdo8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=936813884]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=138041031]
+shape = SubResource("CircleShape2D_jqdo8")
+
+[node name="checkImpactPoints" type="Timer" parent="." unique_id=177329902]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="checkImpactPoints" to="." method="_on_check_impact_points_timeout"]

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cltcwuug5ey26"]
+
+[ext_resource type="Texture2D" uid="uid://b2oy065ialiti" path="res://Unluna/UnlunarMask.png" id="1_cagem"]
+[ext_resource type="Script" uid="uid://bq7wtntgje6sg" path="res://Unluna/unlunar.gd" id="1_lwg7t"]
+[ext_resource type="PackedScene" uid="uid://ftwk5wm1u6wk" path="res://Unluna/unlunarSegment.tscn" id="2_yccfo"]
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_lwg7t"]
+target_nodepath = NodePath("../Movers/HeadTarget")
+fabrik_data_chain_length = 7
+joint_data/0/bone_index = 0
+joint_data/0/bone2d_node = NodePath("Segment")
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("Segment/Segment")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/2/bone_index = 2
+joint_data/2/bone2d_node = NodePath("Segment/Segment/Segment")
+joint_data/2/magnet_position = Vector2(0, 0)
+joint_data/3/bone_index = 3
+joint_data/3/bone2d_node = NodePath("Segment/Segment/Segment/Segment")
+joint_data/3/magnet_position = Vector2(0, 0)
+joint_data/4/bone_index = 4
+joint_data/4/bone2d_node = NodePath("Segment/Segment/Segment/Segment/Segment")
+joint_data/4/magnet_position = Vector2(0, 0)
+joint_data/5/bone_index = 5
+joint_data/5/bone2d_node = NodePath("Segment/Segment/Segment/Segment/Segment/Segment")
+joint_data/5/magnet_position = Vector2(0, 0)
+joint_data/6/bone_index = 6
+joint_data/6/bone2d_node = NodePath("Segment/Segment/Segment/Segment/Segment/Segment/Head")
+joint_data/6/magnet_position = Vector2(0, 0)
+joint_data/6/use_target_rotation = false
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_lwg7t"]
+resource_local_to_scene = true
+enabled = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DFABRIK_lwg7t")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yccfo"]
+radius = 6.0827627
+
+[node name="Unlunar" type="Node2D" unique_id=165578015]
+script = ExtResource("1_lwg7t")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1575084223]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=657513190]
+modification_stack = SubResource("SkeletonModificationStack2D_lwg7t")
+
+[node name="Segment" parent="Skeleton2D" unique_id=727837150 instance=ExtResource("2_yccfo")]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Segment" parent="Skeleton2D/Segment" unique_id=521075589 instance=ExtResource("2_yccfo")]
+position = Vector2(17, 0)
+rest = Transform2D(1, 0, 0, 1, 17, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Segment" parent="Skeleton2D/Segment/Segment" unique_id=1024343371 instance=ExtResource("2_yccfo")]
+position = Vector2(17, 0)
+rest = Transform2D(1, 0, 0, 1, 17, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Segment" parent="Skeleton2D/Segment/Segment/Segment" unique_id=762470247 instance=ExtResource("2_yccfo")]
+position = Vector2(18, 0)
+rest = Transform2D(1, 0, 0, 1, 18, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Segment" parent="Skeleton2D/Segment/Segment/Segment/Segment" unique_id=1081997061 instance=ExtResource("2_yccfo")]
+position = Vector2(17, 0)
+rest = Transform2D(1, 0, 0, 1, 17, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Segment" parent="Skeleton2D/Segment/Segment/Segment/Segment/Segment" unique_id=1762683451 instance=ExtResource("2_yccfo")]
+position = Vector2(17, 0)
+rest = Transform2D(1, 0, 0, 1, 17, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/Segment/Segment/Segment/Segment/Segment/Segment" unique_id=1145579483]
+position = Vector2(14, -1)
+rest = Transform2D(1, 0, 0, 1, 14, -1)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="headSprite" type="Sprite2D" parent="Skeleton2D/Segment/Segment/Segment/Segment/Segment/Segment/Head" unique_id=423249546]
+position = Vector2(-1, 0)
+texture = ExtResource("1_cagem")
+flip_h = true
+
+[node name="Movers" type="Node2D" parent="." unique_id=1742375320]
+
+[node name="Head" type="CharacterBody2D" parent="Movers" unique_id=2065102220]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movers/Head" unique_id=2004513332]
+visible = false
+shape = SubResource("CircleShape2D_yccfo")
+disabled = true
+
+[node name="HeadTarget" type="Node2D" parent="Movers" unique_id=1168152804]
+position = Vector2(130, 0)

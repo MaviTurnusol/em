@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ftwk5wm1u6wk"]
+
+[ext_resource type="Texture2D" uid="uid://d2d7uoqxoephs" path="res://Unluna/UnlunarSegment.png" id="1_f50hu"]
+[ext_resource type="PackedScene" uid="uid://bscmqxhforwm6" path="res://Unluna/unlunarLeg.tscn" id="2_yq3mf"]
+
+[node name="Segment" type="Bone2D" unique_id=727837150]
+show_behind_parent = true
+
+[node name="segmentSprite" type="Sprite2D" parent="." unique_id=192799369]
+texture = ExtResource("1_f50hu")
+
+[node name="LegSkeleton" parent="." unique_id=1727342046 instance=ExtResource("2_yq3mf")]
