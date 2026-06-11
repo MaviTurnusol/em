@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://oqmcwrxo28cr" path="res://Common/cam.tscn" id="3_we0ip"]
 [ext_resource type="Shader" uid="uid://whim4thq5iji" path="res://Common/hitflashscript.gdshader" id="4_2j0hd"]
 [ext_resource type="PackedScene" uid="uid://cfh8qnkitublt" path="res://Environments/Stages/MoonStart.tscn" id="4_we0ip"]
-[ext_resource type="AudioStream" uid="uid://bltc0yabfrv5o" path="res://Sounds/The Sound Of The Moon [VkaZu4NC-Ic].wav" id="6_47pkj"]
+[ext_resource type="AudioStream" uid="uid://bmxhe4xo2im3" path="res://Objects/Night 1 - No, I'm Not a Human OST.mp3" id="6_47pkj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_47pkj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qw8fr"]
 resource_local_to_scene = true
 shader = ExtResource("4_2j0hd")
 shader_parameter/active = false
@@ -34,8 +34,8 @@ target = NodePath("../Player/Node2D")
 
 [node name="Player" parent="." unique_id=830846263 instance=ExtResource("2_lk3id")]
 z_index = 6
-material = SubResource("ShaderMaterial_47pkj")
-position = Vector2(144, 275)
+material = SubResource("ShaderMaterial_qw8fr")
+position = Vector2(320, 287)
 scale = Vector2(1.25, 1.25)
 
 [node name="Node2D" type="Node2D" parent="Player" unique_id=490951289]
@@ -45,4 +45,5 @@ position = Vector2(0, -45)
 
 [node name="ambiance" type="AudioStreamPlayer" parent="." unique_id=106653190]
 stream = ExtResource("6_47pkj")
+volume_db = -17.0
 autoplay = true

@@ -96,3 +96,18 @@ func _on_body_exited(body: Node2D) -> void:
 			UnlimitedRulebook.player.death()
 		#if UnlimitedRulebook.current_stage == null:
 			#UnlimitedRulebook.player.death()
+
+
+func _on_moon_end_body_entered(body: Node2D) -> void:
+	# Çukura düşen şeyin bizim "Player" (Karakter) olup olmadığını kontrol ediyoruz
+	if body.name == "Player":
+		
+		 #body.set_physics_process(false) 
+		
+		$AnimationPlayer.play("white_fade")
+		
+		await $AnimationPlayer.animation_finished
+		
+		await get_tree().create_timer(2.0).timeout
+		
+		get_tree().change_scene_to_file("res://Menu.tscn")
