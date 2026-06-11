@@ -38,7 +38,7 @@ shape = SubResource("RectangleShape2D_ebin1")
 
 [node name="CheckpointFlag" parent="." unique_id=326458859 instance=ExtResource("5_u0xgg")]
 visible = false
-position = Vector2(116, 287)
+position = Vector2(496, 287)
 
 [node name="WornPillar1" type="Sprite2D" parent="." unique_id=387705421]
 modulate = Color(0.24, 0.24, 0.24, 1)

@@ -11,6 +11,7 @@ size = Vector2(640, 960)
 [node name="Moon10" type="Area2D" unique_id=33945537 node_paths=PackedStringArray("collision_shape")]
 script = ExtResource("1_82lor")
 left_stage = "Moon9"
+bottom_stage = "Moon11"
 collision_shape = NodePath("CollisionShape2D")
 metadata/_custom_type_script = "uid://cwm6pb6ovu4va"
 
@@ -24,7 +25,7 @@ position = Vector2(264, 896)
 z_index = -10
 offset_right = 640.0
 offset_bottom = 960.0
-color = Color(0.09884483, 0.09884485, 0.09884482, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=506362893]
 position = Vector2(320, 480)
