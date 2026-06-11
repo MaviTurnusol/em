@@ -18,10 +18,8 @@ metadata/_custom_type_script = "uid://cwm6pb6ovu4va"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1865803487]
 z_index = -10
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 1152.0
-offset_bottom = 640.0
+offset_right = 1088.0
+offset_bottom = 576.0
 color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=254712655]
